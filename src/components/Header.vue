@@ -7,7 +7,7 @@ import { ref } from 'vue'
 <template>
 	<div class="container">
 		<img alt="Rick and Morty logo" src="../assets/logo.svg" />
-		<div class="test"></div>
+		<div class="search"></div>
 	</div>
 </template>
 
@@ -22,7 +22,7 @@ import { ref } from 'vue'
 	border-bottom: 1px solid #e5eaf4;
 	align-items: center;
 }
-.test {
+.search {
 	width: 500px;
 	height: 50px;
 	border: 1px solid #a9b1bd;
