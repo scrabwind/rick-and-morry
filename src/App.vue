@@ -6,18 +6,35 @@ const color = 'yellow'
 </script>
 
 <template>
-	<TopBar msg="Hello Vue 3 + TypeScript + Vite" color="" />
+	<TopBar class="margin" />
 </template>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+body,
+html {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
 
 body {
 	font-family: 'Poppins', sans-serif;
 	font-size: 16px;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	margin: 2rem;
+
+	// padding-left: 8.75rem;
+}
+
+// .dupa {
+// 	width: 500px;
+// 	height: 200px;
+// 	background-color: black;
+// }
+.margin {
+	padding-left: 8.75rem !important;
 }
 </style>
