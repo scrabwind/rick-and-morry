@@ -5,7 +5,7 @@ import { ref } from 'vue'
 </script>
 
 <template>
-	<div class="container">
+	<div class="header">
 		<img alt="Rick and Morty logo" src="../assets/logo.svg" />
 		<div class="search"></div>
 	</div>
@@ -16,7 +16,7 @@ import { ref } from 'vue'
 // 	width: 50px;
 // 	height: 30px;
 // }
-.container {
+.header {
 	display: flex;
 	padding: 2rem;
 	border-bottom: 1px solid #e5eaf4;

@@ -7,7 +7,7 @@ const test = () => {
 </script>
 
 <template>
-	<div class="container">
+	<div class="top-bar">
 		<button @click="test">All characters</button>
 		<button>Favorite</button>
 	</div>
@@ -18,7 +18,7 @@ const test = () => {
 // 	width: 50px;
 // 	height: 30px;
 // }
-.container {
+.top-bar {
 	display: flex;
 	padding: 2rem;
 	border-bottom: 1px solid #e5eaf4;
