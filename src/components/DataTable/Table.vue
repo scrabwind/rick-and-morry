@@ -9,7 +9,7 @@ import Pagination from './Pagination.vue'
 
 const query = gql`
 	query {
-		characters {
+		characters(filter: { name: "" }) {
 			results {
 				image
 				id
@@ -38,7 +38,7 @@ onMounted(async () => {
 		'https://rickandmortyapi.com/graphql',
 		gql`
 			query {
-				characters {
+				characters(filter: { name: "" }) {
 					info {
 						count
 					}
@@ -51,8 +51,6 @@ onMounted(async () => {
 		? (pageCount.value = charCount.value / elementsPerPage)
 		: (pageCount.value = Math.floor(charCount.value / elementsPerPage) + 1)
 })
-console.log(charCount)
-console.log(pageCount)
 const categories: string[] = [
 	'Photo',
 	'Character ID',

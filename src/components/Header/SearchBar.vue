@@ -4,7 +4,11 @@ import InlineSvg from 'vue-inline-svg'
 import arrow from '../../assets/down_arrow.svg'
 import search from '../../assets/search_black_24dp.svg'
 
+const messeage = ref<string>()
 // defineProps<{ msg: string; color: string }>()
+const test = (event: any) => {
+	alert(event)
+}
 </script>
 
 <template>
@@ -14,12 +18,12 @@ import search from '../../assets/search_black_24dp.svg'
 			<div>Name</div>
 			<inline-svg :src="arrow" class="arrow-icon" />
 		</button>
-		<div class="input-container">
-			<input class="input" />
-			<button class="button search-button">
+		<form class="input-container" @submit="() => test(messeage)">
+			<input class="input" type="text" v-model.lazy="messeage" />
+			<button class="button search-button" type="submit">
 				<inline-svg :src="search" class="search-icon" />
 			</button>
-		</div>
+		</form>
 	</div>
 </template>
 
