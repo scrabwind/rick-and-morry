@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Character, Response } from './table.types'
+import { Character, Response, CountResponse } from './table.types'
 
 import { onBeforeMount, onMounted, ref, Suspense } from 'vue'
 import TableHeader from './TableHeader.vue'
@@ -23,12 +23,32 @@ const query = gql`
 	}
 `
 const characters = ref<Character[]>([])
+const charCount = ref<number>()
+const pageCount = ref<number>()
 onMounted(async () => {
+	const elementsPerPage = parseInt(import.meta.env.VITE_ELEMENTS_PER_PAGE)
 	const data: Response = await request(
 		'https://rickandmortyapi.com/graphql',
 		query
 	)
-	characters.value = data.characters.results
+	characters.value = data.characters.results.slice(0, elementsPerPage)
+
+	const countData: CountResponse = await request(
+		'https://rickandmortyapi.com/graphql',
+		gql`
+			query {
+				characters {
+					info {
+						count
+					}
+				}
+			}
+		`
+	)
+	charCount.value = countData.characters.info.count
+	charCount.value % elementsPerPage == 0
+		? (pageCount.value = charCount.value / elementsPerPage)
+		: (pageCount.value = charCount.value / elementsPerPage + 1)
 })
 const categories: string[] = [
 	'Photo',
@@ -42,24 +62,12 @@ const categories: string[] = [
 </script>
 
 <template>
-	<TableHeader class="table-header margin" :items="categories" />
+	<TableHeader class="table-header" :items="categories" />
 	<!-- <h1>{{ characters }}</h1> -->
-	<TableRow
-		class="table-row margin"
-		v-for="character in characters"
-		:character="character"
-	/>
+	<TableRow v-for="character in characters" :character="character" />
 	<!-- <div class="table-items margin">
 		<div>{{ getItems() }}</div>
 	</div> -->
 </template>
 
-<style scoped lang="scss">
-.table-header {
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	height: 50px;
-	background-color: rgba(#e5eaf4, 0.25);
-	align-items: center;
-}
-</style>
+<style scoped lang="scss"></style>

@@ -14,3 +14,11 @@ export interface Response {
 		results: Character[]
 	}
 }
+
+export interface CountResponse {
+	characters: {
+		info: {
+			count: number
+		}
+	}
+}
