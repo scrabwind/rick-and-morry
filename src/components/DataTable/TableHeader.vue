@@ -6,7 +6,11 @@ const props = defineProps<{ items: string[] }>()
 
 <template>
 	<thead class="table-header margin">
-		<div v-for="item in items">{{ item }}</div>
+		<tr v-for="item in items">
+			{{
+				item
+			}}
+		</tr>
 	</thead>
 </template>
 

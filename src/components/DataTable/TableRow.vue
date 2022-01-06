@@ -53,27 +53,28 @@ const getGenderIcon = (gender: string) => {
 </script>
 
 <template>
-	<div class="table-row margin">
+	<tr class="table-row margin">
 		<!-- <div v-for="(item, name, index) in filteredCharacter">
 			<img v-if="index == 0" :src="item" />
 			<div v-else>{{ item }}</div>
 			<div v-for="value in item">{{ value }}</div>
 		</div> -->
-
-		<img :src="filteredCharacter!.image" class="photo" />
-		<div>{{ filteredCharacter!.id }}</div>
-		<div>{{ filteredCharacter!.name }}</div>
-		<div class="gender">
+		<td>
+			<img :src="filteredCharacter!.image" class="photo" />
+		</td>
+		<td>{{ filteredCharacter!.id }}</td>
+		<td>{{ filteredCharacter!.name }}</td>
+		<td class="gender">
 			<inline-svg :src="genderIcon" class="gender-svg" />{{
 				filteredCharacter!.gender
 			}}
-		</div>
-		<div>{{ filteredCharacter!.species }}</div>
-		<div>{{ filteredCharacter!.episode }}</div>
-		<div class="favorite">
+		</td>
+		<td>{{ filteredCharacter!.species }}</td>
+		<td>{{ filteredCharacter!.episode }}</td>
+		<td class="favorite">
 			<inline-svg class="favorite-svg" :src="star" />
-		</div>
-	</div>
+		</td>
+	</tr>
 </template>
 
 <style scoped lang="scss">
