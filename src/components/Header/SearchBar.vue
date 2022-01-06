@@ -1,22 +1,24 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import InlineSvg from 'vue-inline-svg'
-import arrow from '../../assets/play_arrow_black_24dp.svg'
+import arrow from '../../assets/down_arrow.svg'
 import search from '../../assets/search_black_24dp.svg'
 
 // defineProps<{ msg: string; color: string }>()
 </script>
 
 <template>
-	<div>
-		<span>Search By</span>
-		<button class="button">
+	<div class="search-container">
+		<span class="search-text">Search by</span>
+		<button class="button search-by">
 			<div>Name</div>
-			<inline-svg :src="arrow" class="svg" />
+			<inline-svg :src="arrow" class="arrow-icon" />
 		</button>
-		<div>
+		<div class="input-container">
 			<input class="input" />
-			<inline-svg :src="search" class="svg" />
+			<button class="button search-button">
+				<inline-svg :src="search" class="search-icon" />
+			</button>
 		</div>
 	</div>
 </template>
@@ -24,10 +26,48 @@ import search from '../../assets/search_black_24dp.svg'
 <style scoped lang="scss">
 .button,
 .input {
-	border: transparent;
+	border: none;
 	background-color: transparent;
 }
-.svg {
+.button {
+	cursor: pointer;
+}
+.arrow-icon {
 	fill: #a9b1bd;
+	padding-left: 2.5rem;
+}
+.search-by {
+	display: flex;
+	align-items: center;
+	border-right: 1px solid #a9b1bd;
+	padding: 1rem 1rem;
+}
+.search-icon {
+	fill: #11b0c8;
+	// padding: 1rem 0;
+}
+.search-container {
+	display: flex;
+	border: 1px solid #a9b1bd;
+	border-radius: 12px;
+	align-items: center;
+}
+
+.search-text {
+	padding: 1rem 1.25rem;
+	border-right: 1px solid #a9b1bd;
+}
+
+.input-container {
+	display: flex;
+}
+.search-button {
+	display: flex;
+	margin: 1rem 1.25rem 1rem 0;
+	padding: 0;
+}
+
+.input {
+	outline: none;
 }
 </style>

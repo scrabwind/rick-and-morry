@@ -7,7 +7,7 @@ import SearchBar from './SearchBar.vue'
 
 <template>
 	<div class="header">
-		<img alt="Rick and Morty logo" src="../../assets/logo.svg" />
+		<img class="logo" alt="Rick and Morty logo" src="../../assets/logo.svg" />
 		<SearchBar />
 	</div>
 </template>
@@ -18,5 +18,9 @@ import SearchBar from './SearchBar.vue'
 	padding: 2rem;
 	border-bottom: 1px solid #e5eaf4;
 	align-items: center;
+}
+
+.logo {
+	margin-right: 5rem;
 }
 </style>
