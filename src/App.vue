@@ -32,6 +32,9 @@ body {
 
 	// padding-left: 8.75rem;
 }
+* {
+	font-family: 'Poppins', sans-serif;
+}
 
 // .dupa {
 // 	width: 500px;

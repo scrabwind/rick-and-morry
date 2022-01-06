@@ -21,16 +21,16 @@ const test = () => {
 .top-bar {
 	display: flex;
 	padding: 2rem;
-	border-bottom: 1px solid #e5eaf4;
 }
 button {
 	cursor: pointer;
 	padding: 0;
 	// width: 75px;
 	// height: 25px;
-	margin: 0 2.5rem 0 2.5rem;
+	margin: 0 5rem 0 0rem;
 	background-color: transparent;
 	border-color: transparent;
 	color: inherit;
+	font-size: 16px;
 }
 </style>

@@ -5,9 +5,9 @@ const props = defineProps<{ items: string[] }>()
 </script>
 
 <template>
-	<div>
+	<thead>
 		<div v-for="item in items">{{ item }}</div>
-	</div>
+	</thead>
 </template>
 
 <style scoped lang="scss"></style>

@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { Character, Response } from './table.types'
+
 import { onBeforeMount, onMounted, ref, Suspense } from 'vue'
 import TableHeader from './TableHeader.vue'
-import TableItem from './TableItem.vue'
+import TableRow from './TableRow.vue'
 import { GraphQLClient, gql, request } from 'graphql-request'
 
 const query = gql`
@@ -20,9 +22,12 @@ const query = gql`
 		}
 	}
 `
-const characters = ref([])
+const characters = ref<Character[]>([])
 onMounted(async () => {
-	const data = await request('https://rickandmortyapi.com/graphql', query)
+	const data: Response = await request(
+		'https://rickandmortyapi.com/graphql',
+		query
+	)
 	characters.value = data.characters.results
 })
 const categories: string[] = [
@@ -38,10 +43,12 @@ const categories: string[] = [
 
 <template>
 	<TableHeader class="table-header margin" :items="categories" />
-	<h1>{{ characters }}</h1>
-	<TableItem class="table-items margin" v-for="character in characters">{{
-		character
-	}}</TableItem>
+	<!-- <h1>{{ characters }}</h1> -->
+	<TableRow
+		class="table-row margin"
+		v-for="character in characters"
+		:character="character"
+	/>
 	<!-- <div class="table-items margin">
 		<div>{{ getItems() }}</div>
 	</div> -->
@@ -52,12 +59,7 @@ const categories: string[] = [
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
 	height: 50px;
-	background-color: #e5eaf4;
-}
-
-.table-items {
-	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	grid-template-rows: repeat(7, 1fr);
+	background-color: rgba(#e5eaf4, 0.25);
+	align-items: center;
 }
 </style>
