@@ -26,7 +26,7 @@ const characters = ref<Character[]>([])
 const charCount = ref<number>()
 const pageCount = ref<number>()
 onMounted(async () => {
-	const elementsPerPage = parseInt(import.meta.env.VITE_ELEMENTS_PER_PAGE)
+	const elementsPerPage = import.meta.env.VITE_ELEMENTS_PER_PAGE
 	const data: Response = await request(
 		'https://rickandmortyapi.com/graphql',
 		query
@@ -48,8 +48,10 @@ onMounted(async () => {
 	charCount.value = countData.characters.info.count
 	charCount.value % elementsPerPage == 0
 		? (pageCount.value = charCount.value / elementsPerPage)
-		: (pageCount.value = charCount.value / elementsPerPage + 1)
+		: (pageCount.value = Math.floor(charCount.value / elementsPerPage) + 1)
 })
+console.log(charCount)
+console.log(pageCount)
 const categories: string[] = [
 	'Photo',
 	'Character ID',

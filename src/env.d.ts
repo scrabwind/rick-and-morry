@@ -6,3 +6,11 @@ declare module '*.vue' {
 	const component: DefineComponent<{}, {}, any>
 	export default component
 }
+interface ImportMetaEnv {
+	readonly VITE_ELEMENTS_PER_PAGE: number
+	// more env variables...
+}
+
+interface ImportMeta {
+	readonly env: ImportMetaEnv
+}
