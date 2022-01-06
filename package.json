@@ -10,7 +10,8 @@
     "graphql": "^16.2.0",
     "graphql-request": "^3.7.0",
     "sass": "^1.45.2",
-    "vue": "^3.2.25"
+    "vue": "^3.2.25",
+    "vue-inline-svg": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.8",

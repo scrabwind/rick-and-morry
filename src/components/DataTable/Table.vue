@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { Character, Response, CountResponse } from './table.types'
+import type { Character, Response, CountResponse } from './table.types'
 
 import { onBeforeMount, onMounted, ref, Suspense } from 'vue'
 import TableHeader from './TableHeader.vue'
 import TableRow from './TableRow.vue'
 import { GraphQLClient, gql, request } from 'graphql-request'
+import Pagination from './Pagination.vue'
 
 const query = gql`
 	query {
@@ -67,6 +68,7 @@ const categories: string[] = [
 	<TableHeader class="table-header" :items="categories" />
 	<!-- <h1>{{ characters }}</h1> -->
 	<TableRow v-for="character in characters" :character="character" />
+	<Pagination :pageCount="pageCount!" />
 	<!-- <div class="table-items margin">
 		<div>{{ getItems() }}</div>
 	</div> -->

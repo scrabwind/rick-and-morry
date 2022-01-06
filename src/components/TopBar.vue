@@ -30,7 +30,5 @@ button {
 	margin: 0 5rem 0 0rem;
 	background-color: transparent;
 	border-color: transparent;
-	color: inherit;
-	font-size: 16px;
 }
 </style>

@@ -1,17 +1,55 @@
 <script setup lang="ts">
-// import { defineProps } from 'vue'
-import { Character } from './table.types'
+import type { Character } from './table.types'
+import { onMounted, ref, onBeforeMount } from 'vue'
 
-import image from '../../assets/favorite.svg'
-const filterEpisodes = (character: Character) => {
+import InlineSvg from 'vue-inline-svg'
+import star from '../../assets/star_black_24dp.svg'
+import male from '../../assets/male_black_24dp.svg'
+import female from '../../assets/female_black_24dp.svg'
+import genderless from '../../assets/clear_black_24dp.svg'
+import unknown from '../../assets/clear_black_24dp.svg'
+
+const { character } = defineProps<{ character: Character }>()
+
+const filteredCharacter = ref<Character>()
+const genderIcon = ref<string>('')
+
+onBeforeMount(() => {
+	filteredCharacter.value = character
 	const episode = Object.values(character.episode).at(-1)
-	character.episode = episode.episode
-	return character
+	filteredCharacter.value.episode = episode.episode
+	const gender = filteredCharacter.value.gender
+
+	if (gender === 'Male') genderIcon.value = male
+	else if (gender === 'Female') genderIcon.value = female
+	else if (gender === 'Genderless') genderIcon.value = genderless
+	else if (gender === 'Unknown') genderIcon.value = unknown
+})
+
+// const filteredCharacter = filterEpisodes(character)
+
+// const getGenderIcon = (gender: string) => {
+// 	let genderIcon = ''
+// 	switch (gender) {
+// 		case 'Male':
+// 			genderIcon = male
+// 			break
+// 		case 'Female':
+// 			genderIcon = female
+// 			break
+// 		case 'Genderless':
+// 			genderIcon = genderless
+// 			break
+// 		case 'Unknown':
+// 			genderIcon = unknown
+// 			break
+// 	}
+// 	return genderIcon
+// }
+
+const getGenderIcon = (gender: string) => {
+	return ''
 }
-let { character } = defineProps<{ character: Character }>()
-const filteredCharacter = filterEpisodes(character)
-// console.log(filteredCharacter)
-// character = filterEpisodes(character)
 </script>
 
 <template>
@@ -21,13 +59,20 @@ const filteredCharacter = filterEpisodes(character)
 			<div v-else>{{ item }}</div>
 			<div v-for="value in item">{{ value }}</div>
 		</div> -->
-		<img :src="filteredCharacter.image" class="photo" />
-		<div>{{ filteredCharacter.id }}</div>
-		<div>{{ filteredCharacter.name }}</div>
-		<div>{{ filteredCharacter.gender }}</div>
-		<div>{{ filteredCharacter.species }}</div>
-		<div>{{ filteredCharacter.episode }}</div>
-		<img :src="image" />
+
+		<img :src="filteredCharacter!.image" class="photo" />
+		<div>{{ filteredCharacter!.id }}</div>
+		<div>{{ filteredCharacter!.name }}</div>
+		<div class="gender">
+			<inline-svg :src="genderIcon" class="gender-svg" />{{
+				filteredCharacter!.gender
+			}}
+		</div>
+		<div>{{ filteredCharacter!.species }}</div>
+		<div>{{ filteredCharacter!.episode }}</div>
+		<div class="favorite">
+			<inline-svg class="favorite-svg" :src="star" />
+		</div>
 	</div>
 </template>
 
@@ -44,5 +89,31 @@ const filteredCharacter = filterEpisodes(character)
 	width: 43px;
 	object-fit: cover;
 	padding: 0.5rem 0;
+}
+
+.gender {
+	display: flex;
+	align-items: center;
+	.gender-svg {
+		fill: #a9b1bd;
+		width: 1.5rem;
+		height: 1.5rem;
+	}
+}
+
+.favorite {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.5rem;
+	height: 43px;
+	width: 43px;
+	border: 2px solid #11b0c8;
+	border-radius: 8px;
+	.favorite-svg {
+		width: 1.25rem;
+		height: 1.25rem;
+		fill: #11b0c8;
+	}
 }
 </style>

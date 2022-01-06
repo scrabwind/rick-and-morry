@@ -22,18 +22,13 @@ html {
 	width: 100%;
 	height: 100%;
 }
-
-body {
+* {
 	font-family: 'Poppins', sans-serif;
 	font-size: 16px;
 	color: #a9b1bd;
+
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
-	// padding-left: 8.75rem;
-}
-* {
-	font-family: 'Poppins', sans-serif;
 }
 
 // .dupa {
