@@ -3,12 +3,17 @@ import { ref } from 'vue'
 import SearchBar from './SearchBar.vue'
 
 // defineProps<{ msg: string; color: string }>()
+const emit = defineEmits<{ (event: 'changeDupa', msg: string): void }>()
+
+const passEmit = (msg: string) => {
+	emit('changeDupa', msg)
+}
 </script>
 
 <template>
 	<div class="header">
 		<img class="logo" alt="Rick and Morty logo" src="../../assets/logo.svg" />
-		<SearchBar />
+		<SearchBar @change-dupa="event => passEmit(event)" />
 	</div>
 </template>
 

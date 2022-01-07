@@ -4,12 +4,17 @@
 import Header from './components/Header/Header.vue'
 import TopBar from './components/TopBar.vue'
 import Table from './components/DataTable/Table.vue'
+import { ref } from 'vue'
+const search = ref<string>('')
+const test = (msg: string) => {
+	search.value = msg
+}
 </script>
 
 <template>
-	<Header class="margin" />
+	<Header @change-dupa="event => test(event)" class="margin" />
 	<TopBar class="margin" />
-	<Table class="margin" />
+	<Table :search="search" class="margin" />
 </template>
 
 <style lang="scss">
