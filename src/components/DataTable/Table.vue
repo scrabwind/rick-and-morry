@@ -22,8 +22,8 @@ import Pagination from './Pagination.vue'
 
 const elementsPerPage = import.meta.env.VITE_ELEMENTS_PER_PAGE
 
-const props = defineProps<{ search: string }>()
-const { search } = toRefs(props)
+const props = defineProps<{ search: string; options: string }>()
+const { search, options } = toRefs(props)
 const characters = ref<Character[]>([])
 const charCount = ref<number>(0)
 const pageCount = ref<number>(0)
@@ -95,7 +95,9 @@ watchEffect(async () => {
 	characters.value = []
 	charCount.value = 0
 	pageCount.value = 0
-	const query = gql`
+	search.value
+	if (options.value === 'Name') {
+		const queryName = gql`
 		query {
 			characters(filter: { name: "${search.value}" }) {
 				results {
@@ -111,18 +113,15 @@ watchEffect(async () => {
 			}
 		}
 	`
-	const data: Response = await request(
-		'https://rickandmortyapi.com/graphql',
-		query
-	)
-	// .then(data => {
-	// 	characters.value = data.characters.results.slice(0, elementsPerPage)
-	// })
-	characters.value = data.characters.results.slice(0, elementsPerPage)
+		const data: Response = await request(
+			'https://rickandmortyapi.com/graphql',
+			queryName
+		)
+		characters.value = data.characters.results.slice(0, elementsPerPage)
 
-	request(
-		'https://rickandmortyapi.com/graphql',
-		gql`
+		request(
+			'https://rickandmortyapi.com/graphql',
+			gql`
 		query {
 			characters(filter: { name: "${search.value}" }) {
 				info {
@@ -131,12 +130,61 @@ watchEffect(async () => {
 			}
 		}
 	`
-	).then(countData => {
-		charCount.value = countData.characters.info.count
-		charCount.value % elementsPerPage == 0
-			? (pageCount.value = charCount.value / elementsPerPage)
-			: (pageCount.value = Math.floor(charCount.value / elementsPerPage) + 1)
-	})
+		).then(countData => {
+			charCount.value = countData.characters.info.count
+			charCount.value % elementsPerPage == 0
+				? (pageCount.value = charCount.value / elementsPerPage)
+				: (pageCount.value = Math.floor(charCount.value / elementsPerPage) + 1)
+		})
+	} else if (options.value === 'Episode') {
+		const queryEpisode = gql`
+			query {
+				episodes(filter: { episode: "${search.value}" }) {
+					results {
+						characters {
+							image
+							id
+							name
+							gender
+							species
+							episode {
+								episode
+							}
+						}
+					}
+				}
+			}
+		`
+		const data: any = await request(
+			'https://rickandmortyapi.com/graphql',
+			queryEpisode
+		)
+		characters.value = data.episodes.results[0].characters.slice(
+			0,
+			elementsPerPage
+		)
+		request(
+			'https://rickandmortyapi.com/graphql',
+			gql`
+				query {
+					episodes(filter: { episode: "${search.value}" }) {
+						info {
+							count
+						}
+					}
+				}
+			`
+		).then(countData => {
+			charCount.value = countData.episodes.info.count
+			charCount.value % elementsPerPage == 0
+				? (pageCount.value = charCount.value / elementsPerPage)
+				: (pageCount.value = Math.floor(charCount.value / elementsPerPage) + 1)
+		})
+	}
+
+	// .then(data => {
+	// 	characters.value = data.characters.results.slice(0, elementsPerPage)
+	// })
 })
 
 // const characterRefs = ref([])

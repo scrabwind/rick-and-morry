@@ -3,10 +3,10 @@ import { ref } from 'vue'
 import SearchBar from './SearchBar.vue'
 
 // defineProps<{ msg: string; color: string }>()
-const emit = defineEmits<{ (event: 'changeDupa', msg: string): void }>()
+const emit = defineEmits<{ (event: 'changeDupa', msg: string[]): void }>()
 
-const passEmit = (msg: string) => {
-	emit('changeDupa', msg)
+const passEmit = (searchText: string[]) => {
+	emit('changeDupa', searchText)
 }
 </script>
 

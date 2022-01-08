@@ -4,23 +4,52 @@ import InlineSvg from 'vue-inline-svg'
 import arrow from '../../assets/down_arrow.svg'
 import search from '../../assets/search_black_24dp.svg'
 
-const messeage = ref<string>('')
+import type { SearchOption } from './searchBar.types'
 
-const emit = defineEmits<{ (event: 'changeDupa', string: string): void }>()
+const searchText = ref<string>('')
+const isOpen = ref<boolean>(false)
+
+const availableOptions = {
+	name: { text: 'Name', disabled: false },
+	id: { text: 'Identifier', disabled: true },
+	episode: { text: 'Episode', disabled: false },
+}
+const currentOption = ref<string>('Name')
+
+const emit = defineEmits<{ (event: 'changeDupa', string: string[]): void }>()
+
+const optionHandler = (option: SearchOption) => {
+	if (option.disabled) return
+
+	searchText.value = ''
+	currentOption.value = option.text
+}
 </script>
 
 <template>
 	<div class="search-container">
 		<span class="search-text">Search by</span>
-		<button class="button search-by">
-			<div>Name</div>
+		<div class="button search-by" @click="() => (isOpen = !isOpen)">
+			{{ currentOption }}
+			<div v-if="isOpen" class="select">
+				<!-- <div class="select-option">Name</div>
+				<div class="select-option">Identifier</div>
+				<div class="select-option">Episode</div> -->
+				<div
+					@click="() => optionHandler(option)"
+					:class="option.disabled ? 'select-option disabled' : 'select-option'"
+					v-for="option in availableOptions"
+				>
+					{{ option.text }}
+				</div>
+			</div>
 			<inline-svg :src="arrow" class="arrow-icon" />
-		</button>
+		</div>
 		<form
 			class="input-container"
-			@submit.prevent="() => emit('changeDupa', messeage)"
+			@submit.prevent="() => emit('changeDupa', [searchText, currentOption])"
 		>
-			<input class="input" type="text" v-model="messeage" />
+			<input class="input" type="text" v-model="searchText" />
 			<button class="button search-button" type="submit">
 				<inline-svg :src="search" class="search-icon" />
 			</button>
@@ -44,8 +73,35 @@ const emit = defineEmits<{ (event: 'changeDupa', string: string): void }>()
 .search-by {
 	display: flex;
 	align-items: center;
+	padding: 1rem;
+	position: relative;
 	border-right: 1px solid #a9b1bd;
-	padding: 1rem 1rem;
+	border-left: 1px solid #a9b1bd;
+	background-color: white;
+
+	// background: red;
+}
+
+.select {
+	position: absolute;
+	top: 57px;
+	width: 100%;
+	left: -1px;
+	border: 1px solid #a9b1bd;
+	border-top: none;
+	border-radius: 0 0 12px 12px;
+	// border-bottom: none;
+	background-color: white;
+	// box-sizing: border-box;
+}
+
+.select-option {
+	padding: 1rem;
+	// border-bottom: 1px solid #a9b1bd;
+
+	// border: 1px transparent;
+	border-top: 1px solid #a9b1bd;
+	// background-color: #fff;
 }
 .search-icon {
 	fill: #11b0c8;
@@ -59,12 +115,12 @@ const emit = defineEmits<{ (event: 'changeDupa', string: string): void }>()
 }
 
 .search-text {
-	padding: 1rem 1.25rem;
-	border-right: 1px solid #a9b1bd;
+	margin: 1rem 1.25rem;
 }
 
 .input-container {
 	display: flex;
+	padding-left: 1rem;
 }
 .search-button {
 	display: flex;
@@ -75,4 +131,13 @@ const emit = defineEmits<{ (event: 'changeDupa', string: string): void }>()
 .input {
 	outline: none;
 }
+
+.disabled {
+	background-color: #e5eaf4;
+	cursor: default;
+}
+
+// .last {
+// 	border-bottom: none;
+// }
 </style>
