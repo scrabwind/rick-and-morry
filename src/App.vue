@@ -6,15 +6,24 @@ import TopBar from './components/TopBar.vue'
 import Table from './components/DataTable/Table.vue'
 import { ref } from 'vue'
 const search = ref<string[]>(['', 'Name'])
+const page = ref<number>(2)
 const handleEvent = (searchText: string[]) => {
 	search.value = searchText
 }
+const handleEvent2 = (currentPage: number) => {
+	page.value = currentPage
+}
+console.log(page.value)
 </script>
 
 <template>
-	<Header @change-dupa="event => handleEvent(event)" class="margin" />
+	<Header
+		@change-dupa="event => handleEvent(event)"
+		@current-page="event => handleEvent2(event)"
+		class="margin"
+	/>
 	<TopBar class="margin" />
-	<Table :search="search[0]" :options="search[1]" class="margin" />
+	<Table :search="search[0]" :options="search[1]" :page="page" class="margin" />
 </template>
 
 <style lang="scss">

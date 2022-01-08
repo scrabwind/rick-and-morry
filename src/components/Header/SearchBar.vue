@@ -8,6 +8,7 @@ import type { SearchOption } from './searchBar.types'
 
 const searchText = ref<string>('')
 const isOpen = ref<boolean>(false)
+const page = ref<number>(1)
 
 const availableOptions = {
 	name: { text: 'Name', disabled: false },
@@ -16,7 +17,10 @@ const availableOptions = {
 }
 const currentOption = ref<string>('Name')
 
-const emit = defineEmits<{ (event: 'changeDupa', string: string[]): void }>()
+const emit = defineEmits<{
+	(event: 'changeDupa', string: string[]): void
+	(event: 'currentPage', number: number): void
+}>()
 
 const optionHandler = (option: SearchOption) => {
 	if (option.disabled) return
@@ -47,7 +51,12 @@ const optionHandler = (option: SearchOption) => {
 		</div>
 		<form
 			class="input-container"
-			@submit.prevent="() => emit('changeDupa', [searchText, currentOption])"
+			@submit.prevent="
+				() => {
+					emit('changeDupa', [searchText, currentOption])
+					emit('currentPage', page)
+				}
+			"
 		>
 			<input class="input" type="text" v-model="searchText" />
 			<button class="button search-button" type="submit">

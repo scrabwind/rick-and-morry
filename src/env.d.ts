@@ -8,6 +8,7 @@ declare module '*.vue' {
 }
 interface ImportMetaEnv {
 	readonly VITE_ELEMENTS_PER_PAGE: number
+	readonly VITE_API_PAGE_SIZE: number
 	// more env variables...
 }
 
