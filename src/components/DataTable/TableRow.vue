@@ -23,7 +23,7 @@ onBeforeMount(() => {
 	if (gender === 'Male') genderIcon.value = male
 	else if (gender === 'Female') genderIcon.value = female
 	else if (gender === 'Genderless') genderIcon.value = genderless
-	else if (gender === 'Unknown') genderIcon.value = unknown
+	else if (gender === 'unknown') genderIcon.value = unknown
 })
 
 const favoriteHandler = () => {

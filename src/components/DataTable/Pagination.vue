@@ -256,11 +256,15 @@ function goToNext(): void {
 				@click="goToFirst"
 			/>
 		</li> -->
-		<li class="pagination-button" @click="goToPrev">
+		<li
+			class="pagination-button"
+			@click="goToPrev"
+			:class="{ disabled: !isPrevControlsActive }"
+		>
 			<inline-svg
 				:src="arrow"
 				class="arrow left"
-				:class="{ 'Control-active': isNextControlsActive }"
+				:class="{ 'active-control': isPrevControlsActive }"
 			/>
 			<!-- <icon-chevron-left
 				class="Control"
@@ -275,11 +279,15 @@ function goToNext(): void {
 			:current="modelValue"
 			@update="updatePageHandler"
 		/>
-		<li class="pagination-button" @click="goToNext">
+		<li
+			class="pagination-button"
+			@click="goToNext"
+			:class="{ disabled: !isNextControlsActive }"
+		>
 			<inline-svg
 				:src="arrow"
 				class="arrow"
-				:class="{ 'Control-active': isNextControlsActive }"
+				:class="{ 'active-control': isNextControlsActive }"
 			/>
 			<!-- <icon-chevron-right
 				class="Control"
@@ -353,7 +361,7 @@ function goToNext(): void {
 	justify-content: center;
 	width: 1rem;
 	height: 1rem;
-	fill: #11b0c8;
+	fill: #a9b1bd;
 }
 
 .left {
@@ -365,5 +373,11 @@ function goToNext(): void {
 	.arrow {
 		fill: #a9b1bd;
 	}
+}
+.active-control {
+	fill: #11b0c8;
+}
+.disabled {
+	cursor: default;
 }
 </style>

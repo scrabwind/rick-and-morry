@@ -54,7 +54,7 @@ function clickHandler() {
 			class="pagination-button"
 			type="button"
 			:aria-label="`Go to page ${page}`"
-			:class="{ 'Page-active': isActive }"
+			:class="{ 'active-page': isActive }"
 			@click="clickHandler"
 		>
 			{{ page }}
@@ -118,6 +118,7 @@ function clickHandler() {
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
+	user-select: none;
 }
 .arrow {
 	justify-content: center;
@@ -135,5 +136,9 @@ function clickHandler() {
 	.arrow {
 		fill: #a9b1bd;
 	}
+}
+.active-page {
+	background-color: #11b0c8;
+	color: white;
 }
 </style>
