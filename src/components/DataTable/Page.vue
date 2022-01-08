@@ -46,7 +46,7 @@ function clickHandler() {
 <template>
 	<li>
 		<span v-if="page === null" class="pagination-button">
-			<div class="Dots">...</div>
+			<div>...</div>
 			<!-- <inline-svg class="Dots" :src="IconPaginationDots" /> -->
 		</span>
 		<button
