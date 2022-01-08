@@ -93,7 +93,7 @@ const page = ref<number>(1)
 
 // })
 
-watchSyncEffect(() => {
+watchEffect(async () => {
 	characters.value = []
 	charCount.value = 0
 	pageCount.value = 0
@@ -114,11 +114,13 @@ watchSyncEffect(() => {
 			}
 		}
 	`
-		request('https://rickandmortyapi.com/graphql', queryName).then(data => {
-			characters.value = data.characters.results.slice(0, elementsPerPage)
-		})
+		const data: Response = await request(
+			'https://rickandmortyapi.com/graphql',
+			queryName
+		)
+		characters.value = data.characters.results.slice(0, elementsPerPage)
 
-		request(
+		const countData = await request(
 			'https://rickandmortyapi.com/graphql',
 			gql`
 		query {
@@ -129,14 +131,14 @@ watchSyncEffect(() => {
 			}
 		}
 	`
-		).then(countData => {
-			charCount.value = countData.characters.info.count
-			charCount.value % elementsPerPage == 0
-				? (pageCount.value = charCount.value / elementsPerPage)
-				: (pageCount.value = Math.floor(charCount.value / elementsPerPage) + 1)
-			console.log(pageCount.value)
-		})
-	} else if (options.value === 'Episode') {
+		)
+		charCount.value = countData.characters.info.count
+		charCount.value % elementsPerPage == 0
+			? (pageCount.value = charCount.value / elementsPerPage)
+			: (pageCount.value = Math.floor(charCount.value / elementsPerPage) + 1)
+		console.log(pageCount.value)
+	}
+	if (options.value === 'Episode') {
 		const queryEpisode = gql`
 			query {
 				episodes(filter: { episode: "${search.value}" }) {
@@ -155,13 +157,15 @@ watchSyncEffect(() => {
 				}
 			}
 		`
-		request('https://rickandmortyapi.com/graphql', queryEpisode).then(data => {
-			characters.value = data.episodes.results[0].characters.slice(
-				0,
-				elementsPerPage
-			)
-		})
-		request(
+		const data: any = await request(
+			'https://rickandmortyapi.com/graphql',
+			queryEpisode
+		)
+		characters.value = data.episodes.results[0].characters.slice(
+			0,
+			elementsPerPage
+		)
+		const countData = await request(
 			'https://rickandmortyapi.com/graphql',
 			gql`
 				query {
@@ -172,12 +176,11 @@ watchSyncEffect(() => {
 					}
 				}
 			`
-		).then(countData => {
-			charCount.value = countData.episodes.info.count
-			charCount.value % elementsPerPage == 0
-				? (pageCount.value = charCount.value / elementsPerPage)
-				: (pageCount.value = Math.floor(charCount.value / elementsPerPage) + 1)
-		})
+		)
+		charCount.value = countData.episodes.info.count
+		charCount.value % elementsPerPage == 0
+			? (pageCount.value = charCount.value / elementsPerPage)
+			: (pageCount.value = Math.floor(charCount.value / elementsPerPage) + 1)
 	}
 
 	// .then(data => {

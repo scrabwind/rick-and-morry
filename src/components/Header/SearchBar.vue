@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, withDirectives } from 'vue'
 import InlineSvg from 'vue-inline-svg'
 import arrow from '../../assets/down_arrow.svg'
 import search from '../../assets/search_black_24dp.svg'
