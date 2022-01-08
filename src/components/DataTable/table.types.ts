@@ -9,6 +9,9 @@ export interface Character {
 	episode: Episode
 }
 
+export interface RowCharcter extends Character {
+	isChecked: boolean
+}
 export interface Response {
 	characters: {
 		results: Character[]

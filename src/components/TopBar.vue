@@ -1,15 +1,28 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-const test = () => {
-	alert('h1')
-}
+// const buttonHandling = (event: MouseEvent) => {
+// 	console.log(event.)
+// }
+const isCharActive = ref<boolean>(true)
+const isFavActive = ref<boolean>(false)
 // defineProps<{ msg: string; color: string }>()
 </script>
 
 <template>
 	<div class="top-bar">
-		<button @click="test">All characters</button>
-		<button>Favorite</button>
+		<div
+			@click="() => ((isCharActive = true), (isFavActive = false))"
+			:class="isCharActive ? 'button active' : 'button hover'"
+		>
+			All characters
+		</div>
+		<div
+			class="button"
+			@click="() => ((isFavActive = true), (isCharActive = false))"
+			:class="isFavActive ? 'button active' : 'button hover'"
+		>
+			Favorite
+		</div>
 	</div>
 </template>
 
@@ -22,13 +35,20 @@ const test = () => {
 	display: flex;
 	padding: 2rem;
 }
-button {
+.button {
 	cursor: pointer;
 	padding: 0;
 	// width: 75px;
 	// height: 25px;
-	margin: 0 5rem 0 0rem;
-	background-color: transparent;
-	border-color: transparent;
+	margin: 0 5rem 0 0;
+}
+
+.active {
+	color: #11b0c8;
+	border-bottom: 3px solid #11b0c8;
+}
+
+.hover:hover {
+	border-bottom: 3px solid #a9b1bd;
 }
 </style>

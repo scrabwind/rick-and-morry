@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Character } from './table.types'
+import type { Character, RowCharcter } from './table.types'
 import { onMounted, ref, onBeforeMount } from 'vue'
 
 import InlineSvg from 'vue-inline-svg'
@@ -11,11 +11,11 @@ import unknown from '../../assets/clear_black_24dp.svg'
 
 const { character } = defineProps<{ character: Character }>()
 
-const filteredCharacter = ref<Character>()
+const filteredCharacter = ref<RowCharcter>({ ...character, isChecked: false })
 const genderIcon = ref<string>('')
+const colors = ref<string[]>(['#ffffff', '#11b0c8'])
 
 onBeforeMount(() => {
-	filteredCharacter.value = character
 	const episode = Object.values(character.episode).at(-1)
 	filteredCharacter.value.episode = episode.episode
 	const gender = filteredCharacter.value.gender
@@ -26,6 +26,10 @@ onBeforeMount(() => {
 	else if (gender === 'Unknown') genderIcon.value = unknown
 })
 
+const favoriteHandler = () => {
+	filteredCharacter.value.isChecked = !filteredCharacter.value.isChecked
+	colors.value = colors.value.reverse()
+}
 // const filteredCharacter = filterEpisodes(character)
 
 // const getGenderIcon = (gender: string) => {
@@ -62,17 +66,25 @@ const getGenderIcon = (gender: string) => {
 		<td>
 			<img :src="filteredCharacter!.image" class="photo" />
 		</td>
-		<td>{{ filteredCharacter!.id }}</td>
-		<td>{{ filteredCharacter!.name }}</td>
+		<td>{{ filteredCharacter.id }}</td>
+		<td>{{ filteredCharacter.name }}</td>
 		<td class="gender">
 			<inline-svg :src="genderIcon" class="gender-svg" />{{
-				filteredCharacter!.gender
+				filteredCharacter.gender
 			}}
 		</td>
-		<td>{{ filteredCharacter!.species }}</td>
-		<td>{{ filteredCharacter!.episode }}</td>
-		<td class="favorite">
-			<inline-svg class="favorite-svg" :src="star" />
+		<td>{{ filteredCharacter.species }}</td>
+		<td>{{ filteredCharacter.episode }}</td>
+		<td
+			class="favorite"
+			:class="filteredCharacter.isChecked ? 'checked' : ''"
+			@click="() => favoriteHandler()"
+		>
+			<inline-svg
+				class="favorite-svg"
+				:src="star"
+				:class="filteredCharacter.isChecked ? 'checked-svg' : ''"
+			/>
 		</td>
 	</tr>
 </template>
@@ -111,10 +123,12 @@ const getGenderIcon = (gender: string) => {
 	width: 43px;
 	border: 2px solid #11b0c8;
 	border-radius: 8px;
+	background-color: v-bind('colors[0]');
+	cursor: pointer;
 	.favorite-svg {
 		width: 1.25rem;
 		height: 1.25rem;
-		fill: #11b0c8;
+		fill: v-bind('colors[1]');
 	}
 }
 </style>
