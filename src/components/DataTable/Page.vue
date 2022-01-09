@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { defineComponent, computed, ref } from 'vue'
-import InlineSvg from 'vue-inline-svg'
-// import IconPaginationDots from '../../assets/icons/pagination-dots.svg'
+import { computed } from 'vue'
 
 const props = defineProps({
 	page: {
@@ -25,24 +23,6 @@ function clickHandler() {
 	emit('update', props.page)
 }
 </script>
-<!-- <template>
-	<li>
-		<span v-if="page === null" class="DotsHolder">
-			<div class="Dots">...</div>
-			<inline-svg class="Dots" :src="IconPaginationDots" />
-		</span>
-		<button
-			class="Page "
-			type="button"
-			:aria-label="`Go to page ${page}`"
-			:class="{ 'Page-active': isActive }"
-			:style="`background-color: ${isActive ? 'red' : 'transparent'};`"
-			@click="clickHandler"
-		>
-			{{ page }}
-		</button>
-	</li>
-</template> -->
 <template>
 	<li>
 		<span v-if="page === null" class="pagination-button">
@@ -62,46 +42,6 @@ function clickHandler() {
 	</li>
 </template>
 <style scoped lang="scss">
-.Page {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 22px;
-	height: 22px;
-	margin: 0 2px;
-	color: black;
-	background-color: transparent;
-	font-size: 14px;
-	border-radius: 3px;
-	box-sizing: border-box;
-	border-color: transparent;
-	cursor: pointer;
-	outline: 0;
-	user-select: none;
-	&:hover {
-		border: 1px solid grey;
-	}
-	&-active {
-		color: grey;
-		border: 1px solid grey;
-	}
-	background-color: red;
-}
-.DotsHolder {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 22px;
-	height: 22px;
-	margin: 0 2px;
-	box-sizing: border-box;
-}
-.Dots {
-	width: 8px;
-	height: 4px;
-	fill: grey;
-}
-
 .pagination {
 	padding-top: 2.5rem;
 	display: flex;
@@ -140,5 +80,6 @@ function clickHandler() {
 .active-page {
 	background-color: #11b0c8;
 	color: white;
+	cursor: default;
 }
 </style>
