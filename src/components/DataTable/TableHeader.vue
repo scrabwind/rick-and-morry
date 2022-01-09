@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const props = defineProps<{ items: string[] }>()
+defineProps<{ items: string[] }>()
 </script>
 
 <template>
