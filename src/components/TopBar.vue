@@ -1,25 +1,29 @@
 <script setup lang="ts">
-import { ref, toRefs } from 'vue'
+import { watch } from 'fs'
+import { ref, toRefs, watchEffect } from 'vue'
 // const buttonHandling = (event: MouseEvent) => {
 // 	console.log(event.)
 // }
 const isCharActive = ref<boolean>(true)
-const isFavActive = ref<boolean>(false)
+const emit = defineEmits(['activeChar'])
+watchEffect(() => {
+	emit('activeChar', isCharActive.value)
+})
 // defineProps<{ msg: string; color: string }>()
 </script>
 
 <template>
 	<div class="top-bar">
 		<div
-			@click="() => ((isCharActive = true), (isFavActive = false))"
+			@click="() => (isCharActive = true)"
 			:class="isCharActive ? 'button active' : 'button hover'"
 		>
 			All characters
 		</div>
 		<div
 			class="button"
-			@click="() => ((isFavActive = true), (isCharActive = false))"
-			:class="isFavActive ? 'button active' : 'button hover'"
+			@click="() => (isCharActive = false)"
+			:class="!isCharActive ? 'button active' : 'button hover'"
 		>
 			Favorite
 		</div>

@@ -9,11 +9,11 @@ import female from '../../assets/female_black_24dp.svg'
 import genderless from '../../assets/clear_black_24dp.svg'
 import unknown from '../../assets/clear_black_24dp.svg'
 
-const { character } = defineProps<{ character: Character }>()
+const { character } =
+	defineProps<{ character: Character; charActive: boolean }>()
 
 const filteredCharacter = ref<RowCharcter>({ ...character, isChecked: false })
 const genderIcon = ref<string>('')
-const colors = ref<string[]>(['#ffffff', '#11b0c8'])
 
 onBeforeMount(() => {
 	const episode = Object.values(character.episode).at(-1)
@@ -24,11 +24,72 @@ onBeforeMount(() => {
 	else if (gender === 'Female') genderIcon.value = female
 	else if (gender === 'Genderless') genderIcon.value = genderless
 	else if (gender === 'unknown') genderIcon.value = unknown
+	const storageList = localStorage.getItem('favoriteList')
+	if (storageList) {
+		const list = JSON.parse(storageList)
+		list.includes(filteredCharacter.value.id)
+			? (filteredCharacter.value.isChecked = true)
+			: (filteredCharacter.value.isChecked = false)
+	}
 })
 
-const favoriteHandler = () => {
+const done = () => {
 	filteredCharacter.value.isChecked = !filteredCharacter.value.isChecked
-	colors.value = colors.value.reverse()
+	console.log(localStorage.getItem('favoriteList'))
+}
+
+const favoriteHandler = (id: string) => {
+	// isChecked = !isChecked
+	// colors.value = colors.value.reverse()
+	const storageList = localStorage.getItem('favoriteList')
+	let list: string[] = []
+	// ADD TO STORAGE
+	if (!storageList) {
+		list.push(id)
+		localStorage.setItem('favoriteList', JSON.stringify(list))
+		done()
+		return
+	}
+	if (storageList && JSON.parse(storageList).includes(id)) {
+		list = JSON.parse(storageList)
+		const index = list.indexOf(id)
+		if (index !== -1) {
+			list.splice(index, 1)
+		}
+		localStorage.setItem('favoriteList', JSON.stringify(list))
+		done()
+		return
+	}
+	if (storageList && !JSON.parse(storageList).includes(id)) {
+		list = JSON.parse(storageList)
+		list.push(id)
+		localStorage.setItem('favoriteList', JSON.stringify(list))
+		done()
+		return
+	}
+
+	// if (isChecked) {
+	// 	if (storageList) {
+	// 		list.push(id)
+	// 		localStorage.setItem('favoriteList', JSON.stringify(list))
+	// 		return
+	// 	}
+	// 	if (JSON.parse(storageList!).includes(id)) return
+	// 	list = JSON.parse(storageList!)
+	// 	list.push(id)
+	// 	localStorage.setItem('favoriteList', JSON.stringify(list))
+	// }
+	// if (!isChecked) {
+	// 	if (!storageList) return
+	// 	if (JSON.parse(storageList!).includes(id)) {
+	// 		list = JSON.parse(storageList!)
+	// 		const index = list.indexOf(id)
+	// 		if (index !== -1) {
+	// 			list.splice(index, 1)
+	// 		}
+	// 	}
+	// }
+	// filteredCharacter.value.isChecked = !filteredCharacter.value.isChecked
 }
 // const filteredCharacter = filterEpisodes(character)
 
@@ -51,20 +112,28 @@ const favoriteHandler = () => {
 // 	return genderIcon
 // }
 
+const hideFavorite = (charActive: boolean, isChecked: boolean) => {
+	if (charActive) return true
+	if (!charActive && isChecked) return true
+	return false
+}
 const getGenderIcon = (gender: string) => {
 	return ''
 }
 </script>
 
 <template>
-	<tr class="table-row margin">
+	<tr
+		class="table-row margin"
+		v-if="hideFavorite(charActive, filteredCharacter.isChecked)"
+	>
 		<!-- <div v-for="(item, name, index) in filteredCharacter">
 			<img v-if="index == 0" :src="item" />
 			<div v-else>{{ item }}</div>
 			<div v-for="value in item">{{ value }}</div>
 		</div> -->
 		<td>
-			<img :src="filteredCharacter!.image" class="photo" />
+			<img :src="filteredCharacter.image" class="photo" />
 		</td>
 		<td>{{ filteredCharacter.id }}</td>
 		<td>{{ filteredCharacter.name }}</td>
@@ -76,14 +145,12 @@ const getGenderIcon = (gender: string) => {
 		<td>{{ filteredCharacter.species }}</td>
 		<td>{{ filteredCharacter.episode }}</td>
 		<td
-			class="favorite"
-			:class="filteredCharacter.isChecked ? 'checked' : ''"
-			@click="() => favoriteHandler()"
+			:class="filteredCharacter.isChecked ? 'favorite checked' : 'favorite'"
+			@click="() => favoriteHandler(filteredCharacter.id)"
 		>
 			<inline-svg
-				class="favorite-svg"
 				:src="star"
-				:class="filteredCharacter.isChecked ? 'checked-svg' : ''"
+				:class="filteredCharacter.isChecked ? 'checked-svg' : 'favorite-svg'"
 			/>
 		</td>
 	</tr>
@@ -124,12 +191,20 @@ const getGenderIcon = (gender: string) => {
 	width: 43px;
 	border: 2px solid #11b0c8;
 	border-radius: 8px;
-	background-color: v-bind('colors[0]');
+	background-color: white;
 	cursor: pointer;
 	.favorite-svg {
 		width: 1.25rem;
 		height: 1.25rem;
-		fill: v-bind('colors[1]');
+		fill: #11b0c8;
 	}
+}
+.checked {
+	background-color: #11b0c8;
+}
+.checked-svg {
+	width: 1.25rem;
+	height: 1.25rem;
+	fill: white;
 }
 </style>

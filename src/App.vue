@@ -6,12 +6,16 @@ import TopBar from './components/TopBar.vue'
 import Table from './components/DataTable/Table.vue'
 import { ref } from 'vue'
 const search = ref<string[]>(['', 'Name'])
-const page = ref<number>(2)
+const page = ref<number>(1)
+const activeChar = ref<boolean>(true)
 const handleEvent = (searchText: string[]) => {
 	search.value = searchText
 }
 const handleEvent2 = (currentPage: number) => {
 	page.value = currentPage
+}
+const handleEvent3 = (isCharActive: boolean) => {
+	activeChar.value = isCharActive
 }
 console.log(page.value)
 </script>
@@ -22,8 +26,14 @@ console.log(page.value)
 		@current-page="event => handleEvent2(event)"
 		class="margin"
 	/>
-	<TopBar class="margin" />
-	<Table :search="search[0]" :options="search[1]" :page="page" class="margin" />
+	<TopBar class="margin" @active-char="event => handleEvent3(event)" />
+	<Table
+		:search="search[0]"
+		:options="search[1]"
+		:page="page"
+		:char-active="activeChar"
+		class="margin"
+	/>
 </template>
 
 <style lang="scss">
