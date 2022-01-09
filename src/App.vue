@@ -51,12 +51,6 @@ html {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
-// .dupa {
-// 	width: 500px;
-// 	height: 200px;
-// 	background-color: black;
-// }
 .margin {
 	padding-left: 8.75rem !important;
 }

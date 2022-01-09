@@ -36,9 +36,6 @@ const optionHandler = (option: SearchOption) => {
 		<div class="button search-by" @click="() => (isOpen = !isOpen)">
 			{{ currentOption }}
 			<div v-if="isOpen" class="select">
-				<!-- <div class="select-option">Name</div>
-				<div class="select-option">Identifier</div>
-				<div class="select-option">Episode</div> -->
 				<div
 					@click="() => optionHandler(option)"
 					:class="option.disabled ? 'select-option disabled' : 'select-option'"
