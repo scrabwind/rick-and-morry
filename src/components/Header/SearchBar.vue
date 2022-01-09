@@ -99,22 +99,15 @@ const optionHandler = (option: SearchOption) => {
 	border: 1px solid #a9b1bd;
 	border-top: none;
 	border-radius: 0 0 12px 12px;
-	// border-bottom: none;
 	background-color: white;
-	// box-sizing: border-box;
 }
 
 .select-option {
 	padding: 1rem;
-	// border-bottom: 1px solid #a9b1bd;
-
-	// border: 1px transparent;
 	border-top: 1px solid #a9b1bd;
-	// background-color: #fff;
 }
 .search-icon {
 	fill: #11b0c8;
-	// padding: 1rem 0;
 }
 .search-container {
 	display: flex;
@@ -145,8 +138,4 @@ const optionHandler = (option: SearchOption) => {
 	background-color: #e5eaf4;
 	cursor: default;
 }
-
-// .last {
-// 	border-bottom: none;
-// }
 </style>

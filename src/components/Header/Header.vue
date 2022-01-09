@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 import SearchBar from './SearchBar.vue'
 
-// defineProps<{ msg: string; color: string }>()
 const emit = defineEmits<{
 	(event: 'changeDupa', msg: string[]): void
 	(event: 'currentPage', page: number): void

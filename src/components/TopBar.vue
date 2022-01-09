@@ -1,15 +1,11 @@
 <script setup lang="ts">
 import { watch } from 'fs'
 import { ref, toRefs, watchEffect } from 'vue'
-// const buttonHandling = (event: MouseEvent) => {
-// 	console.log(event.)
-// }
 const isCharActive = ref<boolean>(true)
 const emit = defineEmits(['activeChar'])
 watchEffect(() => {
 	emit('activeChar', isCharActive.value)
 })
-// defineProps<{ msg: string; color: string }>()
 </script>
 
 <template>
@@ -31,10 +27,6 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="scss">
-// img {
-// 	width: 50px;
-// 	height: 30px;
-// }
 .top-bar {
 	display: flex;
 	padding: 2rem;
@@ -42,8 +34,6 @@ watchEffect(() => {
 .button {
 	cursor: pointer;
 	padding: 0;
-	// width: 75px;
-	// height: 25px;
 	margin: 0 5rem 0 0;
 }
 

@@ -67,50 +67,7 @@ const favoriteHandler = (id: string) => {
 		done()
 		return
 	}
-
-	// if (isChecked) {
-	// 	if (storageList) {
-	// 		list.push(id)
-	// 		localStorage.setItem('favoriteList', JSON.stringify(list))
-	// 		return
-	// 	}
-	// 	if (JSON.parse(storageList!).includes(id)) return
-	// 	list = JSON.parse(storageList!)
-	// 	list.push(id)
-	// 	localStorage.setItem('favoriteList', JSON.stringify(list))
-	// }
-	// if (!isChecked) {
-	// 	if (!storageList) return
-	// 	if (JSON.parse(storageList!).includes(id)) {
-	// 		list = JSON.parse(storageList!)
-	// 		const index = list.indexOf(id)
-	// 		if (index !== -1) {
-	// 			list.splice(index, 1)
-	// 		}
-	// 	}
-	// }
-	// filteredCharacter.value.isChecked = !filteredCharacter.value.isChecked
 }
-// const filteredCharacter = filterEpisodes(character)
-
-// const getGenderIcon = (gender: string) => {
-// 	let genderIcon = ''
-// 	switch (gender) {
-// 		case 'Male':
-// 			genderIcon = male
-// 			break
-// 		case 'Female':
-// 			genderIcon = female
-// 			break
-// 		case 'Genderless':
-// 			genderIcon = genderless
-// 			break
-// 		case 'Unknown':
-// 			genderIcon = unknown
-// 			break
-// 	}
-// 	return genderIcon
-// }
 
 const hideFavorite = (charActive: boolean, isChecked: boolean) => {
 	if (charActive) return true
