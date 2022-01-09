@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Character, RowCharcter } from './table.types'
-import { onMounted, ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount } from 'vue'
 
 import InlineSvg from 'vue-inline-svg'
 import star from '../../assets/star_black_24dp.svg'
@@ -9,7 +9,7 @@ import female from '../../assets/female_black_24dp.svg'
 import genderless from '../../assets/clear_black_24dp.svg'
 import unknown from '../../assets/clear_black_24dp.svg'
 
-const { character } =
+const { character, charActive } =
 	defineProps<{ character: Character; charActive: boolean }>()
 
 const filteredCharacter = ref<RowCharcter>({ ...character, isChecked: false })
@@ -35,35 +35,33 @@ onBeforeMount(() => {
 
 const done = () => {
 	filteredCharacter.value.isChecked = !filteredCharacter.value.isChecked
-	console.log(localStorage.getItem('favoriteList'))
 }
 
 const favoriteHandler = (id: string) => {
-	// isChecked = !isChecked
-	// colors.value = colors.value.reverse()
-	const storageList = localStorage.getItem('favoriteList')
-	let list: string[] = []
+	const storageList: string | null = localStorage.getItem('favoriteList')
+	let parsed: string[] = []
+	storageList ? (parsed = JSON.parse(storageList)) : parsed
 	// ADD TO STORAGE
 	if (!storageList) {
-		list.push(id)
-		localStorage.setItem('favoriteList', JSON.stringify(list))
+		parsed.push(id)
+		localStorage.setItem('favoriteList', JSON.stringify(parsed))
 		done()
 		return
 	}
-	if (storageList && JSON.parse(storageList).includes(id)) {
-		list = JSON.parse(storageList)
-		const index = list.indexOf(id)
+	// ADD TO EXISTING STORAGE
+	if (storageList && !parsed.includes(id)) {
+		parsed.push(id)
+		localStorage.setItem('favoriteList', JSON.stringify(parsed))
+		done()
+		return
+	}
+	// REMOVE FROM STORAGE
+	if (storageList && parsed.includes(id)) {
+		const index = parsed.indexOf(id)
 		if (index !== -1) {
-			list.splice(index, 1)
+			parsed.splice(index, 1)
 		}
-		localStorage.setItem('favoriteList', JSON.stringify(list))
-		done()
-		return
-	}
-	if (storageList && !JSON.parse(storageList).includes(id)) {
-		list = JSON.parse(storageList)
-		list.push(id)
-		localStorage.setItem('favoriteList', JSON.stringify(list))
+		localStorage.setItem('favoriteList', JSON.stringify(parsed))
 		done()
 		return
 	}
@@ -74,9 +72,6 @@ const hideFavorite = (charActive: boolean, isChecked: boolean) => {
 	if (!charActive && isChecked) return true
 	return false
 }
-const getGenderIcon = (gender: string) => {
-	return ''
-}
 </script>
 
 <template>
@@ -84,11 +79,6 @@ const getGenderIcon = (gender: string) => {
 		class="table-row margin"
 		v-if="hideFavorite(charActive, filteredCharacter.isChecked)"
 	>
-		<!-- <div v-for="(item, name, index) in filteredCharacter">
-			<img v-if="index == 0" :src="item" />
-			<div v-else>{{ item }}</div>
-			<div v-for="value in item">{{ value }}</div>
-		</div> -->
 		<td>
 			<img :src="filteredCharacter.image" class="photo" />
 		</td>
