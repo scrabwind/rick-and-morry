@@ -15,7 +15,6 @@ const handleEvent2 = (currentPage: number) => {
 const handleEvent3 = (isCharActive: boolean) => {
 	activeChar.value = isCharActive
 }
-console.log(page.value)
 </script>
 
 <template>
