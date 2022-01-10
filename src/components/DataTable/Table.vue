@@ -125,7 +125,7 @@ watch([search, charActive], () => {
 </script>
 
 <template>
-	<table style="width: 100vw; overflow-x: scroll">
+	<table>
 		<TableHeader class="table-header" :items="categories" />
 		<tbody>
 			<TableRow
@@ -137,3 +137,9 @@ watch([search, charActive], () => {
 	</table>
 	<Pagination :pages="pageCount" :rangeSize="1" v-model="page" />
 </template>
+<style scoped lang="scss">
+.table {
+	width: 100%;
+	overflow-x: scroll;
+}
+</style>
