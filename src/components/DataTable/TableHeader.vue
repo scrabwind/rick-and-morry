@@ -1,5 +1,9 @@
 <script setup lang="ts">
-defineProps<{ items: string[] }>()
+export interface Props {
+	items: string[]
+}
+
+defineProps<Props>()
 </script>
 
 <template>

@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
-const props = defineProps<{
+export interface Props {
 	page: number | null
 	current: number
-}>()
+}
+
+import { computed } from 'vue'
+
+const props = defineProps<Props>()
 const emit = defineEmits(['update'])
 const isActive = computed(() => {
 	return props.page === props.current

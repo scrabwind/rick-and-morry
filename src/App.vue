@@ -6,23 +6,23 @@ import { ref } from 'vue'
 const search = ref<string[]>(['', 'Name'])
 const page = ref<number>(1)
 const activeChar = ref<boolean>(true)
-const handleEvent = (searchText: string[]) => {
+const handleSearchEvent = (searchText: string[]) => {
 	search.value = searchText
 }
-const handleEvent2 = (currentPage: number) => {
+const handlePageEvent = (currentPage: number) => {
 	page.value = currentPage
 }
-const handleEvent3 = (isCharActive: boolean) => {
+const handleTabEvent = (isCharActive: boolean) => {
 	activeChar.value = isCharActive
 }
 </script>
 
 <template>
 	<Header
-		@change-dupa="event => handleEvent(event)"
-		@current-page="event => handleEvent2(event)"
+		@search="event => handleSearchEvent(event)"
+		@current-page="event => handlePageEvent(event)"
 	/>
-	<TopBar @active-char="event => handleEvent3(event)" />
+	<TopBar @active-char="event => handleTabEvent(event)" />
 	<Table
 		:search="search[0]"
 		:options="search[1]"
@@ -47,8 +47,5 @@ html {
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-.margin {
-	padding-left: 8.75rem !important;
 }
 </style>

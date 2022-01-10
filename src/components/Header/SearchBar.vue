@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import { ref, withDirectives } from 'vue'
+export interface Emits {
+	(event: 'search', string: string[]): void
+	(event: 'currentPage', number: number): void
+}
+import { ref } from 'vue'
 import InlineSvg from 'vue-inline-svg'
 
 import arrow from '../../assets/svg/arrow-down.svg'
 import search from '../../assets/svg/search-icon.svg'
 
-import type { SearchOption } from './searchBar.types'
+import type { SearchOption } from '../../types/Header/searchBar.types'
 
 const searchText = ref<string>('')
 const isOpen = ref<boolean>(false)
@@ -18,10 +22,7 @@ const availableOptions = {
 }
 const currentOption = ref<string>('Name')
 
-const emit = defineEmits<{
-	(event: 'changeDupa', string: string[]): void
-	(event: 'currentPage', number: number): void
-}>()
+const emit = defineEmits<Emits>()
 
 const optionHandler = (option: SearchOption) => {
 	if (option.disabled) return
@@ -52,7 +53,7 @@ const optionHandler = (option: SearchOption) => {
 			class="form"
 			@submit.prevent="
 				() => {
-					emit('changeDupa', [searchText, currentOption])
+					emit('search', [searchText, currentOption])
 					emit('currentPage', page)
 				}
 			"
@@ -98,9 +99,6 @@ const optionHandler = (option: SearchOption) => {
 		@media (max-width: 1320px) {
 			padding: 0.25rem 0.5rem;
 		}
-		// 	@media (max-width: 1320px) {
-		// 	mar-left: 1rem;
-		// }
 	}
 	&-icon {
 		fill: $color-blue;
@@ -111,7 +109,6 @@ const optionHandler = (option: SearchOption) => {
 		@media (max-width: 1320px) {
 			padding: 0.25rem 0.5rem;
 		}
-		// padding: 0;
 	}
 	&-by {
 		display: flex;

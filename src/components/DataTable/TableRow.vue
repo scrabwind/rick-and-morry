@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import type { Character, RowCharcter } from './table.types'
+interface Props {
+	character: Character
+	charActive: boolean
+}
+import type { RowCharcter } from '../../types/DataTable/tableRow.types'
+import { Character } from '../../types/Common/common.types'
 import { ref, onBeforeMount } from 'vue'
 
 import InlineSvg from 'vue-inline-svg'
@@ -9,14 +14,16 @@ import female from '../../assets/svg/female-sign.svg'
 import genderless from '../../assets/svg/genderless-sign.svg'
 import unknown from '../../assets/svg/unknown-sign.svg'
 
-const { character, charActive } =
-	defineProps<{ character: Character; charActive: boolean }>()
+const props = defineProps<Props>()
 
-const filteredCharacter = ref<RowCharcter>({ ...character, isChecked: false })
+const filteredCharacter = ref<RowCharcter>({
+	...props.character,
+	isChecked: false,
+})
 const genderIcon = ref<string>('')
 
 onBeforeMount(() => {
-	const episode = Object.values(character.episode).at(-1)
+	const episode = Object.values(props.character.episode).at(-1)
 	filteredCharacter.value.episode = episode.episode
 	const gender = filteredCharacter.value.gender
 

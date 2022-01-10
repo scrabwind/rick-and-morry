@@ -1,13 +1,15 @@
 <script setup lang="ts">
+export interface Emits {
+	(event: 'search', msg: string[]): void
+	(event: 'currentPage', page: number): void
+}
+
 import SearchBar from './SearchBar.vue'
 
-const emit = defineEmits<{
-	(event: 'changeDupa', msg: string[]): void
-	(event: 'currentPage', page: number): void
-}>()
+const emit = defineEmits<Emits>()
 
 const passEmit = (searchText: string[]) => {
-	emit('changeDupa', searchText)
+	emit('search', searchText)
 }
 const passPageEmit = (currentPage: number) => {
 	emit('currentPage', currentPage)
@@ -18,7 +20,7 @@ const passPageEmit = (currentPage: number) => {
 	<div class="header">
 		<img class="logo" alt="Rick and Morty logo" src="../../assets/svg/logo.svg" />
 		<SearchBar
-			@change-dupa="event => passEmit(event)"
+			@search="event => passEmit(event)"
 			@current-page="event => passPageEmit(event)"
 		/>
 	</div>

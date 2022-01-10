@@ -1,7 +1,12 @@
 <script setup lang="ts">
+export interface Emits {
+	(event: 'activeChar', msg: boolean): void
+}
+
 import { ref, watchEffect } from 'vue'
+
 const isCharActive = ref<boolean>(true)
-const emit = defineEmits(['activeChar'])
+const emit = defineEmits<Emits>()
 watchEffect(() => {
 	emit('activeChar', isCharActive.value)
 })

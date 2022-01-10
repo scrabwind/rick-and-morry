@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import Page from './Page.vue'
-import InlineSvg from 'vue-inline-svg'
-import arrow from '../../assets/svg/arrow.svg'
-const props = defineProps<{
+export interface Props {
 	pages: number
 	rangeSize: number
 	modelValue: number
-}>()
+}
+
+import { computed } from 'vue'
+import InlineSvg from 'vue-inline-svg'
+
+import Page from './Page.vue'
+
+import arrow from '../../assets/svg/arrow.svg'
+
+const props = defineProps<Props>()
 const emit = defineEmits(['update:modelValue'])
 const pagination = computed((): (number | null)[] => {
 	const res = []

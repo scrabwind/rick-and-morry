@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import type { Character } from './table.types'
+interface Props {
+	search: string
+	options: string
+	page: number
+	charActive: boolean
+}
+
+import type { TableCharacter } from '../../types/DataTable/table.types'
 
 import { ref, toRefs, watch, watchEffect } from 'vue'
 
@@ -15,14 +22,9 @@ import TableHeader from './TableHeader.vue'
 import TableRow from './TableRow.vue'
 import Pagination from './Pagination.vue'
 
-const props = defineProps<{
-	search: string
-	options: string
-	page: number
-	charActive: boolean
-}>()
+const props = defineProps<Props>()
 const { search, options, charActive } = toRefs(props)
-const characters = ref<Character[]>([])
+const characters = ref<TableCharacter[]>([])
 const charCount = ref<number>(1)
 const pageCount = ref<number>(1)
 const requestPage = ref<number>(1)
