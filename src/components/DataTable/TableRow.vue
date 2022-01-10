@@ -76,7 +76,7 @@ const hideFavorite = (charActive: boolean, isChecked: boolean) => {
 
 <template>
 	<tr
-		class="table-row margin"
+		class="table-row"
 		v-if="hideFavorite(charActive, filteredCharacter.isChecked)"
 	>
 		<td>
@@ -109,11 +109,19 @@ const hideFavorite = (charActive: boolean, isChecked: boolean) => {
 	grid-template-columns: repeat(7, calc(74rem / 7));
 	align-items: center;
 	border-bottom: 1px solid #e5eaf4;
+	padding-left: 8.75rem;
+	@media (max-width: 1320px) {
+		padding-left: 1rem;
+	}
 }
 .photo {
 	display: block;
 	height: 68px;
 	width: 43px;
+	@media (max-width: 1320px) {
+		height: 50px;
+		width: 30px;
+	}
 	object-fit: cover;
 	padding: 0.5rem 0;
 }

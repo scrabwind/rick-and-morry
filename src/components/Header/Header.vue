@@ -27,12 +27,20 @@ const passPageEmit = (currentPage: number) => {
 <style scoped lang="scss">
 .header {
 	display: flex;
-	padding: 2rem;
+	padding: 2rem 2rem 2rem 8.75rem;
+	@media (max-width: 1320px) {
+		padding-left: 1rem;
+	}
 	border-bottom: 1px solid $color-light-grey;
 	align-items: center;
 }
 
 .logo {
 	margin-right: 5rem;
+	@media (max-width: 1320px) {
+		padding-left: 1rem;
+		margin-right: 1rem;
+		height: 2rem;
+	}
 }
 </style>

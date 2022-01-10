@@ -94,20 +94,32 @@ const optionHandler = (option: SearchOption) => {
 		align-items: center;
 	}
 	&-text {
-		margin: 1rem 1.25rem;
+		padding: 1rem 1.25rem;
+		@media (max-width: 1320px) {
+			padding: 0.25rem 0.5rem;
+		}
+		// 	@media (max-width: 1320px) {
+		// 	mar-left: 1rem;
+		// }
 	}
 	&-icon {
 		fill: $color-blue;
 	}
 	&-button {
 		display: flex;
-		margin: 1rem 1.25rem 1rem 0;
-		padding: 0;
+		padding: 1rem 1.25rem 1rem 0;
+		@media (max-width: 1320px) {
+			padding: 0.25rem 0.5rem;
+		}
+		// padding: 0;
 	}
 	&-by {
 		display: flex;
 		align-items: center;
 		padding: 1rem;
+		@media (max-width: 1320px) {
+			padding: 0.25rem 0.5rem;
+		}
 		position: relative;
 		border-right: 1px solid $color-grey;
 		border-left: 1px solid $color-grey;
@@ -117,7 +129,7 @@ const optionHandler = (option: SearchOption) => {
 
 .select {
 	position: absolute;
-	top: 57px;
+	top: 56px;
 	width: 100%;
 	left: -1px;
 	border: 1px solid $color-grey;

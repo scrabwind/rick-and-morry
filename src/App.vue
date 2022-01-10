@@ -21,15 +21,13 @@ const handleEvent3 = (isCharActive: boolean) => {
 	<Header
 		@change-dupa="event => handleEvent(event)"
 		@current-page="event => handleEvent2(event)"
-		class="margin"
 	/>
-	<TopBar class="margin" @active-char="event => handleEvent3(event)" />
+	<TopBar @active-char="event => handleEvent3(event)" />
 	<Table
 		:search="search[0]"
 		:options="search[1]"
 		:page="page"
 		:char-active="activeChar"
-		class="margin"
 	/>
 </template>
 

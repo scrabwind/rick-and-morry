@@ -11,7 +11,8 @@ watchEffect(() => {
 	<div class="top-bar">
 		<div
 			@click="() => (isCharActive = true)"
-			:class="isCharActive ? 'button active' : 'button hover'"
+			class="button"
+			:class="isCharActive ? 'active' : 'hover'"
 		>
 			All characters
 		</div>
@@ -28,7 +29,10 @@ watchEffect(() => {
 <style scoped lang="scss">
 .top-bar {
 	display: flex;
-	padding: 2rem;
+	padding: 2rem 2rem 2rem 8.75rem;
+	@media (max-width: 1320px) {
+		padding-left: 1rem;
+	}
 }
 .button {
 	cursor: pointer;

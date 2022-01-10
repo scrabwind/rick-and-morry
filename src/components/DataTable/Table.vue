@@ -123,11 +123,15 @@ watch([search, charActive], () => {
 </script>
 
 <template>
-	<TableHeader class="table-header" :items="categories" />
-	<TableRow
-		v-for="character in characters"
-		:character="character"
-		:char-active="charActive"
-	/>
+	<table style="width: 100vw; overflow-x: scroll">
+		<TableHeader class="table-header" :items="categories" />
+		<tbody>
+			<TableRow
+				v-for="character in characters"
+				:character="character"
+				:char-active="charActive"
+			/>
+		</tbody>
+	</table>
 	<Pagination :pages="pageCount" :rangeSize="1" v-model="page" />
 </template>

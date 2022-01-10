@@ -72,7 +72,7 @@ const goToNext = (): void => {
 }
 </script>
 <template>
-	<ul class="pagination-container margin">
+	<ul class="pagination-container">
 		<li
 			class="button"
 			@click="goToPrev"
@@ -106,8 +106,14 @@ const goToNext = (): void => {
 <style scoped lang="scss">
 .pagination-container {
 	padding-top: 2.5rem;
+	padding-left: 8.75rem;
 	display: flex;
 	list-style-type: none;
+	@media (max-width: 1320px) {
+		padding-left: 0;
+		margin: 0 auto;
+		justify-content: center;
+	}
 	.button {
 		width: 2.5rem;
 		height: 2.5rem;
