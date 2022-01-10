@@ -99,7 +99,8 @@ const hideFavorite = (charActive: boolean, isChecked: boolean) => {
 		<td>{{ filteredCharacter.species }}</td>
 		<td>{{ filteredCharacter.episode }}</td>
 		<td
-			:class="filteredCharacter.isChecked ? 'favorite checked' : 'favorite'"
+			class="favorite"
+			:class="{ checked: filteredCharacter.isChecked }"
 			@click="() => favoriteHandler(filteredCharacter.id)"
 		>
 			<inline-svg

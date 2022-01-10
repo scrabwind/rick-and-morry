@@ -111,7 +111,7 @@ const tabs = async (isCharActive: boolean): Promise<void> => {
 	if (!isCharActive) return await favoriteOption()
 }
 
-watchEffect(async () => {
+watchEffect(() => {
 	characters.value = []
 	charCount.value = 0
 	pageCount.value = 0

@@ -22,9 +22,9 @@ watchEffect(() => {
 			All characters
 		</div>
 		<div
-			class="button"
 			@click="() => (isCharActive = false)"
-			:class="!isCharActive ? 'button active' : 'button hover'"
+			class="button"
+			:class="!isCharActive ? 'active' : 'hover'"
 		>
 			Favorite
 		</div>
