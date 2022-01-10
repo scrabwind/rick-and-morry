@@ -127,7 +127,7 @@ watch([search, charActive], () => {
 <template>
 	<table>
 		<TableHeader class="table-header" :items="categories" />
-		<tbody>
+		<tbody class="tbody">
 			<TableRow
 				v-for="character in characters"
 				:character="character"
@@ -141,5 +141,8 @@ watch([search, charActive], () => {
 .table {
 	width: 100%;
 	overflow-x: scroll;
+}
+.tbody {
+	height: 524px;
 }
 </style>
