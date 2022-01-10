@@ -3,11 +3,11 @@ import type { Character, RowCharcter } from './table.types'
 import { ref, onBeforeMount } from 'vue'
 
 import InlineSvg from 'vue-inline-svg'
-import star from '../../assets/star_black_24dp.svg'
-import male from '../../assets/male_black_24dp.svg'
-import female from '../../assets/female_black_24dp.svg'
-import genderless from '../../assets/clear_black_24dp.svg'
-import unknown from '../../assets/clear_black_24dp.svg'
+import star from '../../assets/svg/favorite-icon.svg'
+import male from '../../assets/svg/male-sign.svg'
+import female from '../../assets/svg/female-sign.svg'
+import genderless from '../../assets/svg/genderless-sign.svg'
+import unknown from '../../assets/svg/unknown-sign.svg'
 
 const { character, charActive } =
 	defineProps<{ character: Character; charActive: boolean }>()

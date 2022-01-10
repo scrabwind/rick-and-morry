@@ -16,7 +16,7 @@ const passPageEmit = (currentPage: number) => {
 
 <template>
 	<div class="header">
-		<img class="logo" alt="Rick and Morty logo" src="../../assets/logo.svg" />
+		<img class="logo" alt="Rick and Morty logo" src="../../assets/svg/logo.svg" />
 		<SearchBar
 			@change-dupa="event => passEmit(event)"
 			@current-page="event => passPageEmit(event)"

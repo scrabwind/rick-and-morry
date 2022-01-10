@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import Page from './Page.vue'
 import InlineSvg from 'vue-inline-svg'
-import arrow from '../../assets/play_arrow_black_24dp.svg'
+import arrow from '../../assets/svg/arrow.svg'
 const props = defineProps<{
 	pages: number
 	rangeSize: number

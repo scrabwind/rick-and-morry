@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { watch } from 'fs'
-import { ref, toRefs, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 const isCharActive = ref<boolean>(true)
 const emit = defineEmits(['activeChar'])
 watchEffect(() => {

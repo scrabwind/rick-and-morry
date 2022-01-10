@@ -2,8 +2,8 @@
 import { ref, withDirectives } from 'vue'
 import InlineSvg from 'vue-inline-svg'
 
-import arrow from '../../assets/down_arrow.svg'
-import search from '../../assets/search_black_24dp.svg'
+import arrow from '../../assets/svg/arrow-down.svg'
+import search from '../../assets/svg/search-icon.svg'
 
 import type { SearchOption } from './searchBar.types'
 
