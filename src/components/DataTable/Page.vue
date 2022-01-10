@@ -36,7 +36,7 @@ function clickHandler() {
 	height: 2.5rem;
 	margin-right: 0.5rem;
 	background-color: transparent;
-	border: 1px solid #a9b1bd;
+	border: 1px solid $color-grey;
 	box-sizing: border-box;
 	border-radius: 4px;
 	display: flex;
@@ -45,14 +45,14 @@ function clickHandler() {
 	cursor: pointer;
 	user-select: none;
 	&-active {
-		background-color: #11b0c8;
+		background-color: $color-blue;
 		color: white;
 		cursor: default;
 	}
 	&:disabled {
 		cursor: default;
 		.arrow {
-			fill: #a9b1bd;
+			fill: $color-grey;
 		}
 	}
 }

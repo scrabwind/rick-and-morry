@@ -17,7 +17,7 @@ defineProps<{ items: string[] }>()
 	display: grid;
 	grid-template-columns: repeat(7, calc(74rem / 7));
 	height: 50px;
-	background-color: rgba(#e5eaf4, 0.25);
+	background-color: $header-color;
 	align-items: center;
 }
 </style>

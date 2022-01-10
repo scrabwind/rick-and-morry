@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, withDirectives } from 'vue'
 import InlineSvg from 'vue-inline-svg'
+
 import arrow from '../../assets/down_arrow.svg'
 import search from '../../assets/search_black_24dp.svg'
 
@@ -38,7 +39,8 @@ const optionHandler = (option: SearchOption) => {
 			<div v-if="isOpen" class="select">
 				<div
 					@click="() => optionHandler(option)"
-					:class="option.disabled ? 'select-option disabled' : 'select-option'"
+					class="select-option"
+					:class="{ disabled: option.disabled }"
 					v-for="option in availableOptions"
 				>
 					{{ option.text }}
@@ -47,7 +49,7 @@ const optionHandler = (option: SearchOption) => {
 			<inline-svg :src="arrow" class="arrow-icon" />
 		</div>
 		<form
-			class="input-container"
+			class="form"
 			@submit.prevent="
 				() => {
 					emit('changeDupa', [searchText, currentOption])
@@ -72,20 +74,45 @@ const optionHandler = (option: SearchOption) => {
 .button {
 	cursor: pointer;
 }
+.input {
+	outline: none;
+}
+
+.form {
+	display: flex;
+	padding-left: 1rem;
+}
 .arrow-icon {
-	fill: #a9b1bd;
+	fill: $color-grey;
 	padding-left: 2.5rem;
 }
-.search-by {
-	display: flex;
-	align-items: center;
-	padding: 1rem;
-	position: relative;
-	border-right: 1px solid #a9b1bd;
-	border-left: 1px solid #a9b1bd;
-	background-color: white;
-
-	// background: red;
+.search {
+	&-container {
+		display: flex;
+		border: 1px solid $color-grey;
+		border-radius: 12px;
+		align-items: center;
+	}
+	&-text {
+		margin: 1rem 1.25rem;
+	}
+	&-icon {
+		fill: $color-blue;
+	}
+	&-button {
+		display: flex;
+		margin: 1rem 1.25rem 1rem 0;
+		padding: 0;
+	}
+	&-by {
+		display: flex;
+		align-items: center;
+		padding: 1rem;
+		position: relative;
+		border-right: 1px solid $color-grey;
+		border-left: 1px solid $color-grey;
+		background-color: $color-white;
+	}
 }
 
 .select {
@@ -93,46 +120,18 @@ const optionHandler = (option: SearchOption) => {
 	top: 57px;
 	width: 100%;
 	left: -1px;
-	border: 1px solid #a9b1bd;
+	border: 1px solid $color-grey;
 	border-top: none;
 	border-radius: 0 0 12px 12px;
-	background-color: white;
-}
-
-.select-option {
-	padding: 1rem;
-	border-top: 1px solid #a9b1bd;
-}
-.search-icon {
-	fill: #11b0c8;
-}
-.search-container {
-	display: flex;
-	border: 1px solid #a9b1bd;
-	border-radius: 12px;
-	align-items: center;
-}
-
-.search-text {
-	margin: 1rem 1.25rem;
-}
-
-.input-container {
-	display: flex;
-	padding-left: 1rem;
-}
-.search-button {
-	display: flex;
-	margin: 1rem 1.25rem 1rem 0;
-	padding: 0;
-}
-
-.input {
-	outline: none;
+	background-color: $color-white;
+	&-option {
+		padding: 1rem;
+		border-top: 1px solid $color-grey;
+	}
 }
 
 .disabled {
-	background-color: #e5eaf4;
+	background-color: $color-light-grey;
 	cursor: default;
 }
 </style>

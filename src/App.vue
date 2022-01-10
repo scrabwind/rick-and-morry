@@ -36,6 +36,10 @@ const handleEvent3 = (isCharActive: boolean) => {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
+// @import './assets/_variables.scss';
+:root {
+	--color: brown;
+}
 body,
 html {
 	padding: 0;
@@ -45,8 +49,8 @@ html {
 }
 * {
 	font-family: 'Poppins', sans-serif;
-	font-size: 16px;
-	color: #a9b1bd;
+	font-size: $font-size;
+	color: $color-grey;
 
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

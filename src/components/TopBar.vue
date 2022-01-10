@@ -38,11 +38,11 @@ watchEffect(() => {
 }
 
 .active {
-	color: #11b0c8;
-	border-bottom: 3px solid #11b0c8;
+	color: $color-blue;
+	border-bottom: 3px solid $color-blue;
 }
 
 .hover:hover {
-	border-bottom: 3px solid #a9b1bd;
+	border-bottom: 3px solid $color-grey;
 }
 </style>

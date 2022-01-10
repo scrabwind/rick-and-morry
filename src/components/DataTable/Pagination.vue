@@ -127,7 +127,7 @@ const goToNext = (): void => {
 			width: 1rem;
 			height: 1rem;
 			&-active {
-				fill: #11b0c8;
+				fill: $color-blue;
 			}
 			&-left {
 				transform: rotate(180deg);

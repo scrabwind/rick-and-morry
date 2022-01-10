@@ -28,7 +28,7 @@ const passPageEmit = (currentPage: number) => {
 .header {
 	display: flex;
 	padding: 2rem;
-	border-bottom: 1px solid #e5eaf4;
+	border-bottom: 1px solid $color-light-grey;
 	align-items: center;
 }
 

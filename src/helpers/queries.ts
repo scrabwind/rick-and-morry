@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request'
 
-const queryAll = (search: string, page: number): string => {
+export const queryAll = (search: string, page: number): string => {
 	return gql`		
 		query {
 			characters(filter: { name: "${search}" } page: ${page}) {
@@ -19,7 +19,7 @@ const queryAll = (search: string, page: number): string => {
 	`
 }
 
-const queryAllCount = (search: string, requestPage: number): string => {
+export const queryAllCount = (search: string, requestPage: number): string => {
 	return gql`
 			query {
 				characters(filter: { name: "${search}" } page: ${requestPage}) {
@@ -31,7 +31,7 @@ const queryAllCount = (search: string, requestPage: number): string => {
 		`
 }
 
-const queryEpisode = (search: string): string => {
+export const queryEpisode = (search: string): string => {
 	if (!search) search = 'S01E01'
 	return gql`
 			query {
@@ -53,7 +53,7 @@ const queryEpisode = (search: string): string => {
 		`
 }
 
-const queryFavorite = (storage: string): string => {
+export const queryFavorite = (storage: string): string => {
 	return gql`
 				query {
 					charactersByIds(ids: ${storage}) {
@@ -69,4 +69,3 @@ const queryFavorite = (storage: string): string => {
 				}
 			`
 }
-export { queryAll, queryAllCount, queryEpisode, queryFavorite }

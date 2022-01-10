@@ -43,7 +43,7 @@ const apiPageSize = parseInt(import.meta.env.VITE_API_PAGE_SIZE)
 const nameOption = async (): Promise<void> => {
 	requestPage.value = Math.ceil((page.value * elementsPerPage) / 20)
 	const [data, countData] = await requestApi([
-		queryAll(search.value, page.value),
+		queryAll(search.value, requestPage.value),
 		queryAllCount(search.value, requestPage.value),
 	])
 	charCount.value = countData.data.characters.info.count
@@ -55,7 +55,7 @@ const nameOption = async (): Promise<void> => {
 		let together = []
 		const req2 = requestPage.value + 1
 		const page2 = await requestApi([queryAll(search.value, req2)])
-		together.push(...data.characters.results)
+		together.push(...data.data.characters.results)
 		together.push(...page2.characters.results)
 		characters.value = together.slice(value, value + elementsPerPage)
 		return
@@ -65,7 +65,7 @@ const nameOption = async (): Promise<void> => {
 		const req2 = requestPage.value - 1
 		const page2 = await requestApi([queryAll(search.value, req2)])
 		together.push(...page2.characters.results)
-		together.push(...data.characters.results)
+		together.push(...data.data.characters.results)
 		characters.value = together.slice(value, value + elementsPerPage)
 		return
 	}

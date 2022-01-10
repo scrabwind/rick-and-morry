@@ -136,22 +136,22 @@ const hideFavorite = (charActive: boolean, isChecked: boolean) => {
 	width: 2.5rem;
 	height: 43px;
 	width: 43px;
-	border: 2px solid #11b0c8;
+	border: 2px solid $color-blue;
 	border-radius: 8px;
-	background-color: white;
+	background-color: $color-white;
 	cursor: pointer;
 	.favorite-svg {
 		width: 1.25rem;
 		height: 1.25rem;
-		fill: #11b0c8;
+		fill: $color-blue;
 	}
 }
 .checked {
-	background-color: #11b0c8;
+	background-color: $color-blue;
 }
 .checked-svg {
 	width: 1.25rem;
 	height: 1.25rem;
-	fill: white;
+	fill: $color-white;
 }
 </style>
