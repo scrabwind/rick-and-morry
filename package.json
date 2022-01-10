@@ -1,6 +1,8 @@
 {
   "name": "dc-fe-kamil-wiatrowski",
   "version": "0.0.0",
+  "license": "ISC",
+  "author": "Kamil Wiatrowski",
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
