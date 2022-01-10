@@ -5,9 +5,11 @@ interface Props {
 }
 import type { RowCharcter } from '../../types/DataTable/tableRow.types'
 import { Character } from '../../types/Common/common.types'
-import { ref, onBeforeMount } from 'vue'
 
+import { ref, onBeforeMount } from 'vue'
 import InlineSvg from 'vue-inline-svg'
+import nth from 'lodash.nth'
+
 import star from '../../assets/svg/favorite-icon.svg'
 import male from '../../assets/svg/male-sign.svg'
 import female from '../../assets/svg/female-sign.svg'
@@ -23,7 +25,7 @@ const filteredCharacter = ref<RowCharcter>({
 const genderIcon = ref<string>('')
 
 onBeforeMount(() => {
-	const episode = Object.values(props.character.episode).at(-1)
+	const episode = nth(Object.values(props.character.episode), -1)
 	filteredCharacter.value.episode = episode.episode
 	const gender = filteredCharacter.value.gender
 
