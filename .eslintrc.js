@@ -11,6 +11,11 @@ module.exports = {
     '@vue/eslint-config-typescript/recommended',
     '@vue/eslint-config-prettier'
   ],
+  settings: {
+    'import/resolver': {
+      typescript: {}
+    }
+  },
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -19,6 +24,9 @@ module.exports = {
     extraFileExtensions: ['.vue']
   },
   parser: 'vue-eslint-parser',
+  rules: {
+    'no-return-assign': 'off'
+  },
   plugins: ['vue'],
   ignorePatterns: ['node_modules', 'assets']
 }
