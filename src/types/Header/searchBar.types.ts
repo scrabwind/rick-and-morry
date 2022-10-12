@@ -1,4 +1,4 @@
 export interface SearchOption {
-	text: string
-	disabled: boolean
+  text: string
+  disabled: boolean
 }

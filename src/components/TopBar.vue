@@ -16,15 +16,17 @@
 <template>
   <div class="top-bar">
     <div
-      @click="() => (isCharActive = true)"
       class="button"
-      :class="isCharActive ? 'active' : 'hover'">
+      :class="isCharActive ? 'active' : 'hover'"
+      @click="() => (isCharActive = true)"
+    >
       All characters
     </div>
     <div
-      @click="() => (isCharActive = false)"
       class="button"
-      :class="!isCharActive ? 'active' : 'hover'">
+      :class="!isCharActive ? 'active' : 'hover'"
+      @click="() => (isCharActive = false)"
+    >
       Favorite
     </div>
   </div>

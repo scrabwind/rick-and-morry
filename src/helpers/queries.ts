@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request'
 
 export const queryAll = (search: string, page: number): string => {
-	return gql`		
+  return gql`		
 		query {
 			characters(filter: { name: "${search}" } page: ${page}) {
 				results {
@@ -20,7 +20,7 @@ export const queryAll = (search: string, page: number): string => {
 }
 
 export const queryAllCount = (search: string, requestPage: number): string => {
-	return gql`
+  return gql`
 			query {
 				characters(filter: { name: "${search}" } page: ${requestPage}) {
 					info {
@@ -31,9 +31,8 @@ export const queryAllCount = (search: string, requestPage: number): string => {
 		`
 }
 
-export const queryEpisode = (search: string): string => {
-	if (!search) search = 'S01E01'
-	return gql`
+export const queryEpisode = (search = 'S01E01'): string => {
+  return gql`
 			query {
 				episodes(filter: { episode: "${search}" }) {
 					results {
@@ -54,7 +53,7 @@ export const queryEpisode = (search: string): string => {
 }
 
 export const queryFavorite = (storage: string): string => {
-	return gql`
+  return gql`
 				query {
 					charactersByIds(ids: ${storage}) {
 						image

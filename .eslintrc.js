@@ -5,16 +5,20 @@ module.exports = {
     node: true
   },
   extends: [
-    'airbnb',
-    'airbnb-typescript',
+    'airbnb-base',
+    'airbnb-typescript/base',
     'plugin:vue/vue3-recommended',
-    'plugin:prettier/recommended'
+    '@vue/eslint-config-typescript/recommended',
+    '@vue/eslint-config-prettier'
   ],
   overrides: [],
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
+    project: './tsconfig.json',
+    extraFileExtensions: ['.vue']
   },
+  parser: 'vue-eslint-parser',
   plugins: ['vue'],
-  rules: {}
+  ignorePatterns: ['node_modules', 'assets']
 }

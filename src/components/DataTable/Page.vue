@@ -1,10 +1,10 @@
 <script setup lang="ts">
+  import { computed } from 'vue'
+
   export interface Props {
     page: number | null
     current: number
   }
-
-  import { computed } from 'vue'
 
   const props = defineProps<Props>()
   const emit = defineEmits(['update'])
@@ -19,7 +19,8 @@
   <li>
     <span
       v-if="page === null"
-      class="button">
+      class="button"
+    >
       <div>...</div>
       <!-- <inline-svg class="Dots" :src="IconPaginationDots" /> -->
     </span>
@@ -28,7 +29,8 @@
       class="button"
       type="button"
       :class="{ 'button-active': isActive }"
-      @click="clickHandler">
+      @click="clickHandler"
+    >
       {{ page }}
     </button>
   </li>
