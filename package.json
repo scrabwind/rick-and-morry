@@ -10,7 +10,7 @@
     "lint": "eslint src/**/* --ext .ts,.vue",
     "lint:style": "stylelint **/*.{scss,vue}",
     "prepare": "husky install",
-    "lint:staged": "pnpm lint-staged"
+    "lint:staged": "pnpm lint-staged --concurrent=false"
   },
   "dependencies": {
     "graphql": "^16.6.0",

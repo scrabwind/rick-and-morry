@@ -2,7 +2,6 @@
   import { ref, onBeforeMount } from 'vue'
   import InlineSvg from 'vue-inline-svg'
   import nth from 'lodash.nth'
-  import type { RowCharcter } from './tableRow.types'
   import { Character } from '@common/types/common.types'
 
   import star from '@assets/svg/favorite-icon.svg'
@@ -10,6 +9,7 @@
   import female from '@assets/svg/female-sign.svg'
   import genderless from '@assets/svg/genderless-sign.svg'
   import unknown from '@assets/svg/unknown-sign.svg'
+  import type { RowCharcter } from './tableRow.types'
 
   interface Props {
     character: Character
@@ -36,9 +36,11 @@
     const storageList = localStorage.getItem('favoriteList')
     if (storageList) {
       const list = JSON.parse(storageList)
-      list.includes(filteredCharacter.value.id)
-        ? (filteredCharacter.value.isChecked = true)
-        : (filteredCharacter.value.isChecked = false)
+      if (list.includes(filteredCharacter.value.id)) {
+        filteredCharacter.value.isChecked = true
+      } else {
+        filteredCharacter.value.isChecked = false
+      }
     }
   })
 
@@ -49,7 +51,7 @@
   const favoriteHandler = (id: string) => {
     const storageList: string | null = localStorage.getItem('favoriteList')
     let parsed: string[] = []
-    storageList ? (parsed = JSON.parse(storageList)) : parsed
+    if (storageList) parsed = JSON.parse(storageList)
     // ADD TO STORAGE
     if (!storageList) {
       parsed.push(id)

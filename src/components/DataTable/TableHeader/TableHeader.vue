@@ -10,7 +10,8 @@
   <thead class="table-header">
     <tr class="table-header-row">
       <th
-        v-for="item in items"
+        v-for="(item, index) in items"
+        :key="index"
         class="table-header-item"
       >
         {{ item }}

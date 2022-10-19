@@ -30,7 +30,7 @@
       const isEndBoundaryReached = props.pages - rangeEnd < 3
       if (isStartBoundaryReached) {
         rangeEnd = minPaginationElems - 2
-        for (let i = 1; i < rangeStart; i++) {
+        for (let i = 1; i < rangeStart; i += 1) {
           res.push(i)
         }
       } else {
@@ -39,18 +39,18 @@
       }
       if (isEndBoundaryReached) {
         rangeStart = props.pages - (minPaginationElems - 3)
-        for (let i = rangeStart; i <= props.pages; i++) {
+        for (let i = rangeStart; i <= props.pages; i += 1) {
           res.push(i)
         }
       } else {
-        for (let i = rangeStart; i <= rangeEnd; i++) {
+        for (let i = rangeStart; i <= rangeEnd; i += 1) {
           res.push(i)
         }
         res.push(null)
         res.push(props.pages)
       }
     } else {
-      for (let i = rangeStart; i <= rangeEnd; i++) {
+      for (let i = rangeStart; i <= rangeEnd; i += 1) {
         res.push(i)
       }
     }
@@ -90,7 +90,8 @@
       />
     </li>
     <Page
-      v-for="page in pagination"
+      v-for="(page, index) in pagination"
+      :key="index"
       :page="page"
       :current="modelValue"
       @update="updatePageHandler"
