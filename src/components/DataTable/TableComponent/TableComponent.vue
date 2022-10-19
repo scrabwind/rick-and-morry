@@ -8,12 +8,11 @@
     queryFavorite
   } from '@helpers/queries'
 
-  import type { TableCharacter } from './table.types'
-
   import Pagination from '@components/DataTable/PaginationComponent/PaginationComponent.vue'
 
   import TableHeader from '@components/DataTable/TableHeader/TableHeader.vue'
   import TableRow from '@components/DataTable/TableRow/TableRow.vue'
+  import type { TableCharacter } from './table.types'
 
   interface Props {
     search: string

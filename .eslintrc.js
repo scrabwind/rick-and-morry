@@ -20,12 +20,13 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    extraFileExtensions: ['.vue']
+    extraFileExtensions: ['.vue'],
+    project: './tsconfig.json'
   },
   parser: 'vue-eslint-parser',
   rules: {
     'no-return-assign': 'off'
   },
   plugins: ['vue'],
-  ignorePatterns: ['node_modules', 'assets']
+  ignorePatterns: ['node_modules', 'assets', 'vite.config.ts']
 }

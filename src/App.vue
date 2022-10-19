@@ -33,7 +33,7 @@
 </template>
 
 <style lang="scss">
-  @import "https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap";
+  @import 'https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap';
 
   body,
   html {
