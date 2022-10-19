@@ -2,10 +2,10 @@
   import { ref } from 'vue'
   import InlineSvg from 'vue-inline-svg'
 
-  import arrow from '../../assets/svg/arrow-down.svg'
-  import search from '../../assets/svg/search-icon.svg'
+  import arrow from '@assets/svg/arrow-down.svg'
+  import search from '@assets/svg/search-icon.svg'
 
-  import type { SearchOption } from '../../types/Header/searchBar.types'
+  import type { SearchOption } from './searchBar.types'
 
   export interface Emits {
     (event: 'search', string: string[]): void
@@ -38,24 +38,30 @@
     <span class="search-text">Search by</span>
     <div
       class="button search-by"
-      @click="() => (isOpen = !isOpen)">
+      @click="() => (isOpen = !isOpen)"
+    >
       {{ currentOption }}
       <div
         v-if="isOpen"
-        class="select">
+        class="select"
+      >
         <div
           v-for="(option, index) in availableOptions"
           :key="index"
-          :class="{ disabled: option.disabled }" 
+          :class="{ disabled: option.disabled }"
           class="select-option"
-          @click="() => optionHandler(option)"/>
-          {{ option.text }}
+          @click="() => optionHandler(option)"
+        >
+          <span>
+            {{ option.text }}
+          </span>
         </div>
       </div>
-      <inline-svg
-        :src="arrow"
-        class="arrow-icon" />
     </div>
+    <inline-svg
+      :src="arrow"
+      class="arrow-icon"
+    />
     <form
       class="form"
       @submit.prevent="
@@ -63,17 +69,21 @@
           emit('search', [searchText, currentOption])
           emit('currentPage', page)
         }
-      ">
+      "
+    >
       <input
         v-model="searchText"
         class="input"
-        type="text" />
+        type="text"
+      />
       <button
         class="button search-button"
-        type="submit">
+        type="submit"
+      >
         <inline-svg
           :src="search"
-          class="search-icon" />
+          class="search-icon"
+        />
       </button>
     </form>
   </div>

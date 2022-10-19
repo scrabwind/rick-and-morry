@@ -7,11 +7,13 @@
     queryEpisode,
     queryFavorite
   } from '@helpers/queries'
-  import type { TableCharacter } from '../../types/DataTable/table.types'
 
-  import TableHeader from './TableHeader.vue'
-  import TableRow from './TableRow.vue'
-  import Pagination from './Pagination.vue'
+  import type { TableCharacter } from './table.types'
+
+  import Pagination from '@components/DataTable/PaginationComponent/PaginationComponent.vue'
+
+  import TableHeader from '@components/DataTable/TableHeader/TableHeader.vue'
+  import TableRow from '@components/DataTable/TableRow/TableRow.vue'
 
   interface Props {
     search: string

@@ -2,9 +2,9 @@
   import { computed } from 'vue'
   import InlineSvg from 'vue-inline-svg'
 
-  import Page from './Page.vue'
+  import Page from '@components/DataTable/PageComponent/PageComponent.vue'
 
-  import arrow from '../../assets/svg/arrow.svg'
+  import arrow from '@assets/svg/arrow.svg'
 
   export interface Props {
     pages: number

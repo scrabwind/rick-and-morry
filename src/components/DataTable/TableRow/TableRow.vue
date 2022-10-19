@@ -2,14 +2,14 @@
   import { ref, onBeforeMount } from 'vue'
   import InlineSvg from 'vue-inline-svg'
   import nth from 'lodash.nth'
-  import type { RowCharcter } from '../../types/DataTable/tableRow.types'
-  import { Character } from '../../types/Common/common.types'
+  import type { RowCharcter } from './tableRow.types'
+  import { Character } from '@common/types/common.types'
 
-  import star from '../../assets/svg/favorite-icon.svg'
-  import male from '../../assets/svg/male-sign.svg'
-  import female from '../../assets/svg/female-sign.svg'
-  import genderless from '../../assets/svg/genderless-sign.svg'
-  import unknown from '../../assets/svg/unknown-sign.svg'
+  import star from '@assets/svg/favorite-icon.svg'
+  import male from '@assets/svg/male-sign.svg'
+  import female from '@assets/svg/female-sign.svg'
+  import genderless from '@assets/svg/genderless-sign.svg'
+  import unknown from '@assets/svg/unknown-sign.svg'
 
   interface Props {
     character: Character

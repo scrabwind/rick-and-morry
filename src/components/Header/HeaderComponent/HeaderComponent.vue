@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import SearchBar from './SearchBar.vue'
+  import SearchBar from '@components/Header/SearchBar/SearchBar.vue'
 
   export interface Emits {
     (event: 'search', msg: string[]): void

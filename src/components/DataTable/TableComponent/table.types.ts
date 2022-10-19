@@ -1,4 +1,4 @@
-import type { Character } from '../Common/common.types'
+import type { Character } from '../../../common/types/common.types'
 
 export type TableCharacter = Character
 

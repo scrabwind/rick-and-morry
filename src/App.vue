@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { ref } from 'vue'
-  import Header from './components/Header/Header.vue'
-  import TopBar from './components/TopBar.vue'
-  import Table from './components/DataTable/Table.vue'
+  import Header from '@components/Header/HeaderComponent/HeaderComponent.vue'
+  import TopBar from '@components/TopBar/TopBar.vue'
+  import Table from '@components/DataTable/TableComponent/TableComponent.vue'
 
   const search = ref<string[]>(['', 'Name'])
   const page = ref<number>(1)

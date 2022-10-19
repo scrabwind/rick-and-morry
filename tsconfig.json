@@ -14,7 +14,9 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@helpers/*": ["src/helpers/*"]
+      "@helpers/*": ["src/helpers/*"],
+      "@assets/*": ["src/assets/*"],
+      "@common/*": ["src/common/*"]
     },
     "types": ["node"]
   },

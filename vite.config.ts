@@ -5,10 +5,11 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), tsconfigPaths({ extensions: ['.ts', '.vue'] })],
+  base: '.',
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import "./src/assets/scss/_variables.scss";`
+        additionalData: `@use "./src/assets/scss/_variables.scss" as *;`
       }
     }
   }
