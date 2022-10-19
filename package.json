@@ -7,8 +7,8 @@
     "dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "lint": "eslint src/**/* --ext .ts,.vue",
-    "lint:style": "stylelint **/*.{scss,vue}",
+    "lint": "eslint src/**/* --ext .ts,.vue --quiet",
+    "lint:style": "stylelint **/*.{scss,vue} --quiet",
     "prepare": "husky install",
     "lint:staged": "pnpm lint-staged --concurrent=false"
   },
