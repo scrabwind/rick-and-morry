@@ -123,18 +123,22 @@
     align-items: center;
     border-bottom: 1px solid #e5eaf4;
     padding-left: 8.75rem;
+
     @media (max-width: 1320px) {
       padding-left: 1rem;
     }
   }
+
   .photo {
     display: block;
     height: 68px;
     width: 43px;
+
     @media (max-width: 1320px) {
       height: 50px;
       width: 30px;
     }
+
     object-fit: cover;
     padding: 0.5rem 0;
   }
@@ -142,6 +146,7 @@
   .gender {
     display: flex;
     align-items: center;
+
     .gender-svg {
       fill: #a9b1bd;
       width: 1.5rem;
@@ -154,22 +159,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
     height: 43px;
     width: 43px;
     border: 2px solid $color-blue;
     border-radius: 8px;
     background-color: $color-white;
     cursor: pointer;
+
     .favorite-svg {
       width: 1.25rem;
       height: 1.25rem;
       fill: $color-blue;
     }
   }
+
   .checked {
     background-color: $color-blue;
   }
+
   .checked-svg {
     width: 1.25rem;
     height: 1.25rem;

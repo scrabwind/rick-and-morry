@@ -33,6 +33,7 @@
       grid-template-columns: repeat(7, 1fr);
       width: 74rem;
       padding-left: 8.75rem;
+
       @media (max-width: 1320px) {
         padding-left: 1rem;
       }

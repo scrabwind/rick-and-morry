@@ -114,11 +114,13 @@
     padding-left: 8.75rem;
     display: flex;
     list-style-type: none;
+
     @media (max-width: 1320px) {
       padding-left: 0;
       margin: 0 auto;
       justify-content: center;
     }
+
     .button {
       width: 2.5rem;
       height: 2.5rem;
@@ -137,14 +139,17 @@
         justify-content: center;
         width: 1rem;
         height: 1rem;
+
         &-active {
           fill: $color-blue;
         }
+
         &-left {
           transform: rotate(180deg);
         }
       }
     }
+
     .disabled {
       cursor: default;
     }

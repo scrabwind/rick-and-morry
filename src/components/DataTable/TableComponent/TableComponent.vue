@@ -149,6 +149,7 @@
     width: 100%;
     overflow-x: scroll;
   }
+
   .tbody {
     height: 524px;
   }

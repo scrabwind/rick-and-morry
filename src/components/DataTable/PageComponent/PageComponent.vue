@@ -22,7 +22,6 @@
       class="button"
     >
       <div>...</div>
-      <!-- <inline-svg class="Dots" :src="IconPaginationDots" /> -->
     </span>
     <button
       v-else
@@ -49,13 +48,16 @@
     justify-content: center;
     cursor: pointer;
     user-select: none;
+
     &-active {
       background-color: $color-blue;
       color: white;
       cursor: default;
     }
+
     &:disabled {
       cursor: default;
+
       .arrow {
         fill: $color-grey;
       }

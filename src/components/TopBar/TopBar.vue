@@ -36,10 +36,12 @@
   .top-bar {
     display: flex;
     padding: 2rem 2rem 2rem 8.75rem;
+
     @media (max-width: 1320px) {
       padding-left: 1rem;
     }
   }
+
   .button {
     cursor: pointer;
     padding: 0;

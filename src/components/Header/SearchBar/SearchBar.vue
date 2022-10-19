@@ -95,9 +95,11 @@
     border: none;
     background-color: transparent;
   }
+
   .button {
     cursor: pointer;
   }
+
   .input {
     outline: none;
   }
@@ -106,10 +108,12 @@
     display: flex;
     padding-left: 1rem;
   }
+
   .arrow-icon {
     fill: $color-grey;
     padding-left: 2.5rem;
   }
+
   .search {
     &-container {
       display: flex;
@@ -117,29 +121,37 @@
       border-radius: 12px;
       align-items: center;
     }
+
     &-text {
       padding: 1rem 1.25rem;
+
       @media (max-width: 1320px) {
         padding: 0.25rem 0.5rem;
       }
     }
+
     &-icon {
       fill: $color-blue;
     }
+
     &-button {
       display: flex;
       padding: 1rem 1.25rem 1rem 0;
+
       @media (max-width: 1320px) {
         padding: 0.25rem 0.5rem;
       }
     }
+
     &-by {
       display: flex;
       align-items: center;
       padding: 1rem;
+
       @media (max-width: 1320px) {
         padding: 0.25rem 0.5rem;
       }
+
       position: relative;
       border-right: 1px solid $color-grey;
       border-left: 1px solid $color-grey;
@@ -156,6 +168,7 @@
     border-top: none;
     border-radius: 0 0 12px 12px;
     background-color: $color-white;
+
     &-option {
       padding: 1rem;
       border-top: 1px solid $color-grey;
