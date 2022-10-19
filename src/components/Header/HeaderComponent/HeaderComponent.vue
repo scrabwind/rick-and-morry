@@ -21,7 +21,7 @@
     <img
       class="logo"
       alt="Rick and Morty logo"
-      src="../../assets/svg/logo.svg"
+      src="@assets/svg/logo.svg"
     />
     <SearchBar
       @search="event => passEmit(event)"

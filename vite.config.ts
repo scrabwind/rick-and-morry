@@ -4,8 +4,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), tsconfigPaths({ extensions: ['.ts', '.vue'] })],
-  base: '.',
+  plugins: [vue(), tsconfigPaths()],
   css: {
     preprocessorOptions: {
       scss: {
